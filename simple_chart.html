@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+		var sid = '1U76bS6qEGz4IkNh1tWYyjYJvPvRDnzviQsAN5TpTGWE';
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawGID);
+
+	  
+	  function drawGID() {
+	  var queryString = encodeURIComponent('SELECT A, C');
+	  var queryString2 = encodeURIComponent('SELECT A, D, E');
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString);
+      query.send(handleQueryResponse);
+	  
+	  var query2 = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString2);
+	  query2.send(handleQueryResponse2);
+    }
+
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+
+      var data = response.getDataTable();
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+	  var options = {
+			title: 'Lamp',
+			height: 600,
+			crosshair: { trigger: 'both' }, // Display crosshairs on focus and selection.
+	
+        };
+      chart.draw(data, options);
+    }
+	
+	function handleQueryResponse2(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+
+      var data = response.getDataTable();
+	  var chart = new google.visualization.LineChart(document.getElementById('chart_p'));
+	  var options = {
+		title: 'Power Efficiency',
+		// Gives each series an axis that matches the vAxes number below.
+        series: {
+          0: {targetAxisIndex: 0},
+          1: {targetAxisIndex: 1}
+        },
+		vAxes: {
+          // Adds titles to each axis.
+          0: {title: 'PF'},
+          1: {title: 'P'}
+        },
+	  }
+	  chart.draw(data, options);
+    }
+    </script>
+	
+	<script>
+	function showGraph() {
+		var tmpTq = document.getElementById("parameter").value;
+		var limit = document.getElementById("limit").value;
+		var offset = document.getElementById("offset").value;
+		console.log("limit=" + limit);
+		
+		if(limit == "0")
+		{
+			tmpTq = tmpTq + " OFFSET " + offset;
+		}
+		else
+		{
+			tmpTq = tmpTq + " LIMIT " + limit + " OFFSET " + offset;
+		}
+		
+		console.log("tq=" + tmpTq);
+		var queryString = encodeURIComponent(tmpTq);
+		
+		var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString);
+		query.send(handleQueryResponseDyn);
+	}
+	
+    function handleQueryResponseDyn(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+
+      var data = response.getDataTable();
+      var chart = new google.visualization.LineChart(document.getElementById('chart_tmp'));
+	  //var chart = new google.charts.Line(document.getElementById('chart_tmp'));
+
+	  var options = {
+			title: 'Parameter',
+			height: 600,
+			crosshair: { trigger: 'both' }, // Display crosshairs on focus and selection.
+	
+        };
+      chart.draw(data, options);
+	  //hart.draw(data, google.charts.Line.convertOptions(options));
+    }
+	</script>
+	
+  </head>
+  <body>
+    <div id="chart_div" style="width: 1200px; height: 600px;"></div>
+	<div id="chart_p" style="width: 1200px; height: 600px;"></div>
+	<div id="chart_tmp" style="width: 1200px; height: 600px;"></div>
+	Parameter:
+	<select id="parameter">
+		<option value="SELECT A, B">I</option>
+		<option value="SELECT A, C">V</option>
+		<option value="SELECT A, D">PF</option>
+		<option value="SELECT A, E">P</option>
+		<option value="SELECT A, F">E</option>
+	</select><br>
+	Limit: <input type="text" id="limit" value="0"><br>
+	Offset: <input type="text" id="offset" value="0"> <br><br>
+	<button onclick="showGraph()">Show</button>
+
+  </body>
+</html>

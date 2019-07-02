@@ -1,0 +1,1840 @@
+[
+    {
+        "id": "f3b204a8.28e8c8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "66991e30.57a4",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "840851ba.b320c",
+        "type": "modbus-client",
+        "z": "",
+        "name": "modbusGateway",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "tcpHost": "192.168.100.102",
+        "tcpPort": "502",
+        "tcpType": "TPC-RTU-BUFFERED",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectTimeout": "2000"
+    },
+    {
+        "id": "9e6f9654.f0a1b8",
+        "type": "firebase config",
+        "z": "",
+        "firebaseurl": "wpm2019-403f9",
+        "loginType": "none"
+    },
+    {
+        "id": "a068fec0.cb3bc",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "symp",
+        "broker": "m15.cloudmqtt.com",
+        "port": "19824",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "b5e36f07.e197e",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "req_all",
+        "topic": "req/aloft/rm100",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 70,
+        "y": 380,
+        "wires": [
+            [
+                "c6b53e36.e74c5",
+                "66a41346.d8bc9c"
+            ]
+        ]
+    },
+    {
+        "id": "c6b53e36.e74c5",
+        "type": "modbus-getter",
+        "z": "f3b204a8.28e8c8",
+        "name": "all",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "118",
+        "server": "840851ba.b320c",
+        "x": 190,
+        "y": 380,
+        "wires": [
+            [
+                "93d9bc03.c019"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "302c5164.9dfb3e",
+        "type": "mqtt out",
+        "z": "f3b204a8.28e8c8",
+        "name": "res",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "broker": "a068fec0.cb3bc",
+        "x": 770,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "efd3b579.220358",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "op",
+        "func": "msg.payload = msg.payload[108];\nmsg.topic = msg.topic +  \"op\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 60,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "8440f4ba.685c08",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "op",
+        "topic": "aloft/rm100/op",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "f2ac9775.1b2428"
+            ]
+        ]
+    },
+    {
+        "id": "f2ac9775.1b2428",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "108",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1060,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c0b995f2.ea7b08",
+        "type": "comment",
+        "z": "f3b204a8.28e8c8",
+        "name": "set",
+        "info": "subscribe for topic \"Op\" with mqtt broker\nand write to modbus slave",
+        "x": 110,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "a1023b73.7383e8",
+        "type": "comment",
+        "z": "f3b204a8.28e8c8",
+        "name": "get",
+        "info": "subscribe for topic \"request current setting\" with \nmqtt broker, read data from modbus slave\nand publish to mqtt subscriber",
+        "x": 70,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2e2082cf.158e7e",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c",
+        "func": "msg.payload = msg.payload[47];\nmsg.topic = msg.topic + \"c\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "789d25f6.a9cfbc",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "c",
+        "topic": "aloft/rm100/c",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1120,
+        "wires": [
+            [
+                "ad960fd0.ae5f9"
+            ]
+        ]
+    },
+    {
+        "id": "ad960fd0.ae5f9",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "47",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1120,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c70d7d69.ba08a",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "sh",
+        "func": "msg.payload = msg.payload[109];\nmsg.topic = msg.topic +  \"sh\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "c3aa6853.5228b8",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "sh",
+        "topic": "aloft/rm100/sh",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1180,
+        "wires": [
+            [
+                "56d8352c.0a9cbc"
+            ]
+        ]
+    },
+    {
+        "id": "56d8352c.0a9cbc",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "109",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1180,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "93d9bc03.c019",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "Location",
+        "func": "msg.topic = \"res/aloft/rm100/\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 380,
+        "wires": [
+            [
+                "2e2082cf.158e7e",
+                "efd3b579.220358",
+                "c70d7d69.ba08a",
+                "bab6e52.bb7f818",
+                "27318a57.ff4fe6",
+                "7c8f500f.aae8d",
+                "e7d458eb.492928",
+                "df781bc9.2bc868",
+                "98ec3bfe.bfa138",
+                "dc60b673.c98d78",
+                "e18b3b3d.fa1c98",
+                "3c1bd60f.e0e99a",
+                "ef5ec87a.3b5568",
+                "6235922f.9361cc",
+                "c080e56c.f15028",
+                "a20023ee.ed038",
+                "35af54d5.3d7aac",
+                "4d106231.e9c23c",
+                "f6735cce.062c7",
+                "3dc8337a.bcfb1c"
+            ]
+        ]
+    },
+    {
+        "id": "bab6e52.bb7f818",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "fi",
+        "func": "msg.payload = msg.payload[65];\nmsg.topic = msg.topic +  \"fi\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "27318a57.ff4fe6",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "ti",
+        "func": "msg.payload = msg.payload[66];\nmsg.topic = msg.topic +  \"ti\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 220,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "7c8f500f.aae8d",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "fo",
+        "func": "msg.payload = msg.payload[74];\nmsg.topic = msg.topic +  \"fo\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 260,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "e7d458eb.492928",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "to",
+        "func": "msg.payload = msg.payload[75];\nmsg.topic = msg.topic +  \"to\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "df781bc9.2bc868",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "tu",
+        "func": "msg.payload = msg.payload[57];\nmsg.topic = msg.topic +  \"tu\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 340,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "98ec3bfe.bfa138",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "td",
+        "func": "msg.payload = msg.payload[58];\nmsg.topic = msg.topic +  \"td\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 380,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "dc60b673.c98d78",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "_o",
+        "func": "msg.payload = msg.payload[110];\nmsg.topic = msg.topic +  \"_o\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 420,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "e18b3b3d.fa1c98",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "_c",
+        "func": "msg.payload = msg.payload[111];\nmsg.topic = msg.topic +  \"_c\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "3c1bd60f.e0e99a",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "co",
+        "func": "msg.payload = msg.payload[77];\nmsg.topic = msg.topic +  \"co\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 500,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "ef5ec87a.3b5568",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "li",
+        "func": "msg.payload = msg.payload[112];\nmsg.topic = msg.topic +  \"li\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 580,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "6235922f.9361cc",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "en",
+        "func": "msg.payload = msg.payload[113];\nmsg.topic = msg.topic +  \"en\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 620,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "c080e56c.f15028",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "hd",
+        "func": "msg.payload = msg.payload[114];\nmsg.topic = msg.topic +  \"hd\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 660,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "a20023ee.ed038",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "hu",
+        "func": "msg.payload = msg.payload[115];\nmsg.topic = msg.topic +  \"hu\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 700,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "35af54d5.3d7aac",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "h1",
+        "func": "msg.payload = msg.payload[116];\nmsg.topic = msg.topic +  \"h1\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 740,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "4d106231.e9c23c",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "h2",
+        "func": "msg.payload = msg.payload[117];\nmsg.topic = msg.topic +  \"h2\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 780,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "3ee85739.a3f298",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "fi",
+        "topic": "aloft/rm100/fi",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1240,
+        "wires": [
+            [
+                "f838c4e2.3178a8"
+            ]
+        ]
+    },
+    {
+        "id": "f838c4e2.3178a8",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "65",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1240,
+        "wires": [
+            [
+                "99229bf2.d5acc8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a287f556.8481e8",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "ti",
+        "topic": "aloft/rm100/ti",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1300,
+        "wires": [
+            [
+                "6dd3b7f7.a6d738"
+            ]
+        ]
+    },
+    {
+        "id": "6dd3b7f7.a6d738",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "66",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1300,
+        "wires": [
+            [
+                "a39c575c.610758"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f3ba9f84.c267",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "fo",
+        "topic": "aloft/rm100/fo",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1360,
+        "wires": [
+            [
+                "e9e27875.e0da68"
+            ]
+        ]
+    },
+    {
+        "id": "e9e27875.e0da68",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "74",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "278e5de9.5dd1a2",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "to",
+        "topic": "aloft/rm100/to",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1420,
+        "wires": [
+            [
+                "e094d313.9eabd"
+            ]
+        ]
+    },
+    {
+        "id": "e094d313.9eabd",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "75",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1420,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4d11e67c.bbb158",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "tu",
+        "topic": "aloft/rm100/tu",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1480,
+        "wires": [
+            [
+                "87d4debf.fd1a6"
+            ]
+        ]
+    },
+    {
+        "id": "87d4debf.fd1a6",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "57",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1480,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "334ffb1a.be8e14",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "td",
+        "topic": "aloft/rm100/td",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1540,
+        "wires": [
+            [
+                "6bea07fe.630d78"
+            ]
+        ]
+    },
+    {
+        "id": "6bea07fe.630d78",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "58",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1540,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "de892f97.62681",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "_o",
+        "topic": "aloft/rm100/_o",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1600,
+        "wires": [
+            [
+                "4b8003bf.f973ec"
+            ]
+        ]
+    },
+    {
+        "id": "4b8003bf.f973ec",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "110",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1600,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "254930b2.d28e6",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "_c",
+        "topic": "aloft/rm100/_c",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1660,
+        "wires": [
+            [
+                "fb23aeac.baa74"
+            ]
+        ]
+    },
+    {
+        "id": "fb23aeac.baa74",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "111",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1660,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1e4d7a94.92cac5",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "co",
+        "topic": "aloft/rm100/co",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1720,
+        "wires": [
+            [
+                "ae147ed7.3802c"
+            ]
+        ]
+    },
+    {
+        "id": "ae147ed7.3802c",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "77",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1720,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ddfd7c48.ad502",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "_d",
+        "topic": "aloft/rm100/_d",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1780,
+        "wires": [
+            [
+                "8216c477.17c368"
+            ]
+        ]
+    },
+    {
+        "id": "8216c477.17c368",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "78",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1780,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "748a6c49.7e9c64",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "li",
+        "topic": "aloft/rm100/li",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1840,
+        "wires": [
+            [
+                "d49b6847.4c3168"
+            ]
+        ]
+    },
+    {
+        "id": "d49b6847.4c3168",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "112",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1840,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6428c75e.9b1fe8",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "en",
+        "topic": "aloft/rm100/en",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1900,
+        "wires": [
+            [
+                "fcd87483.5119d8"
+            ]
+        ]
+    },
+    {
+        "id": "fcd87483.5119d8",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "113",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1900,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "fa9991dc.aec1c",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "hd",
+        "topic": "aloft/rm100/hd",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 1960,
+        "wires": [
+            [
+                "cab803e.931c6"
+            ]
+        ]
+    },
+    {
+        "id": "cab803e.931c6",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "114",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 1960,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4a09b808.f5d528",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "hu",
+        "topic": "aloft/rm100/hu",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 2020,
+        "wires": [
+            [
+                "3df8ce8d.9663b2"
+            ]
+        ]
+    },
+    {
+        "id": "3df8ce8d.9663b2",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "115",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 2020,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b90f021a.afb31",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "h1",
+        "topic": "aloft/rm100/h1",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 2080,
+        "wires": [
+            [
+                "93b3acf9.2be29"
+            ]
+        ]
+    },
+    {
+        "id": "93b3acf9.2be29",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "116",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 2080,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8f3fab3.d54b158",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "h2",
+        "topic": "aloft/rm100/h2",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 2140,
+        "wires": [
+            [
+                "32318abb.28f4f6"
+            ]
+        ]
+    },
+    {
+        "id": "32318abb.28f4f6",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "117",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 250,
+        "y": 2140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f6735cce.062c7",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "_d",
+        "func": "msg.payload = msg.payload[78];\nmsg.topic = msg.topic +  \"_d\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 540,
+        "wires": [
+            [
+                "302c5164.9dfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "3dc8337a.bcfb1c",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 330,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "99229bf2.d5acc8",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "a39c575c.610758",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "66a41346.d8bc9c",
+        "type": "modbus-getter",
+        "z": "f3b204a8.28e8c8",
+        "name": "err",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "42",
+        "server": "840851ba.b320c",
+        "x": 230,
+        "y": 880,
+        "wires": [
+            [
+                "2577d60e.80e36a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "77cec030.107a1",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 730,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "ac2a6a23.6f5c88",
+        "type": "inject",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 220,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2577d60e.80e36a",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "Location",
+        "func": "msg.topic = \"res/aloft/rm100/\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 880,
+        "wires": [
+            [
+                "b9c099af.726a08",
+                "6d2eef3c.74257",
+                "bae0cc2b.48ad9",
+                "7704d421.7befac",
+                "9ca6a886.29f8d8",
+                "68295509.b584ac",
+                "4d27c309.c9a98c",
+                "171857d1.ad6a68"
+            ]
+        ]
+    },
+    {
+        "id": "b9c099af.726a08",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c33",
+        "func": "msg.payload = msg.payload[32];\nmsg.topic = msg.topic +  \"c33\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 880,
+        "wires": [
+            [
+                "77cec030.107a1",
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "6d2eef3c.74257",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c34",
+        "func": "msg.payload = msg.payload[33];\nmsg.topic = msg.topic +  \"c34\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 920,
+        "wires": [
+            [
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "bae0cc2b.48ad9",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c35",
+        "func": "msg.payload = msg.payload[34];\nmsg.topic = msg.topic +  \"c35\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 960,
+        "wires": [
+            [
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "7704d421.7befac",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c36",
+        "func": "msg.payload = msg.payload[35];\nmsg.topic = msg.topic +  \"c36\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1000,
+        "wires": [
+            [
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "9ca6a886.29f8d8",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c37",
+        "func": "msg.payload = msg.payload[36];\nmsg.topic = msg.topic +  \"c37\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1040,
+        "wires": [
+            [
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "68295509.b584ac",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c21",
+        "func": "msg.payload = msg.payload[20];\nmsg.topic = msg.topic +  \"c21\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1080,
+        "wires": [
+            [
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "4d27c309.c9a98c",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c30",
+        "func": "msg.payload = msg.payload[29];\nmsg.topic = msg.topic +  \"c30\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1120,
+        "wires": [
+            [
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "171857d1.ad6a68",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "c41",
+        "func": "msg.payload = msg.payload[40];\nmsg.topic = msg.topic +  \"c41\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1160,
+        "wires": [
+            [
+                "cef24306.9df6e"
+            ]
+        ]
+    },
+    {
+        "id": "cef24306.9df6e",
+        "type": "mqtt out",
+        "z": "f3b204a8.28e8c8",
+        "name": "res",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "broker": "a068fec0.cb3bc",
+        "x": 750,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "71fb0f81.5c3cf",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "fd",
+        "topic": "aloft/rm100/fd",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 110,
+        "y": 2220,
+        "wires": [
+            [
+                "892da72f.f30478"
+            ]
+        ]
+    },
+    {
+        "id": "b431c645.d4b358",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "14",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 410,
+        "y": 2220,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "892da72f.f30478",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "fd",
+        "func": "if(msg.payload == \"y\")\n{\n    msg.payload = true;\n}\nelse if(msg.payload == \"n\")\n{\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 2220,
+        "wires": [
+            [
+                "b431c645.d4b358",
+                "a2a77e72.d4676"
+            ]
+        ]
+    },
+    {
+        "id": "a2a77e72.d4676",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "f80fee53.4fc23",
+        "type": "inject",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "x": 110,
+        "y": 2300,
+        "wires": [
+            [
+                "e41f80f5.3ad4d"
+            ]
+        ]
+    },
+    {
+        "id": "c88f8258.58a6e",
+        "type": "modbus-getter",
+        "z": "f3b204a8.28e8c8",
+        "name": "all",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "17",
+        "quantity": "3",
+        "server": "840851ba.b320c",
+        "x": 310,
+        "y": 2320,
+        "wires": [
+            [
+                "acfce357.aaf21"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e41f80f5.3ad4d",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "rand",
+        "func": "var fanspeed = Math.floor(Math.random() * 5);\nvar tempset = 35 - 20*Math.random();\nvar roomtemp = 35 - 20*Math.random();\nvar uts = msg.payload;\nflow.set(\"fanspeed\", fanspeed.toFixed(2));\nflow.set(\"tempset\", tempset.toFixed(2));\nflow.set(\"roomtemp\", roomtemp.toFixed(2));\nflow.set(\"uts\", uts);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 2280,
+        "wires": [
+            [
+                "192c84b4.3be0ab",
+                "fb48d177.d39ae",
+                "9416a147.c84ef"
+            ]
+        ]
+    },
+    {
+        "id": "acfce357.aaf21",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "set",
+        "func": "var fanspeed = msg.payload[0];\nvar tempset = msg.payload[1];\nvar roomtemp = msg.payload[2];\n\nflow.set(\"fanspeed\", fanspeed);\nflow.set(\"tempset\", tempset);\nflow.set(\"roomtemp\", roomtemp);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 2340,
+        "wires": [
+            [
+                "192c84b4.3be0ab",
+                "fb48d177.d39ae",
+                "9416a147.c84ef"
+            ]
+        ]
+    },
+    {
+        "id": "b029ff03.43711",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "uts",
+        "func": "var uts = msg.payload;\n\nflow.set(\"uts\", uts);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 150,
+        "y": 2340,
+        "wires": [
+            [
+                "f811fc0b.a906d"
+            ]
+        ]
+    },
+    {
+        "id": "1c325caa.868763",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "get",
+        "func": "var fanspeed = flow.get(\"fanspeed\");\nvar tempset = flow.get(\"tempset\");\nvar roomtemp = flow.get(\"roomtemp\");\nvar note = \"demo room\";\nvar uts = flow.get(\"uts\");\nmsg.payload = [fanspeed, tempset, roomtemp, note, uts];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 170,
+        "y": 2480,
+        "wires": [
+            [
+                "cf61c016.03b96"
+            ]
+        ]
+    },
+    {
+        "id": "cf61c016.03b96",
+        "type": "http request",
+        "z": "f3b204a8.28e8c8",
+        "name": "sheet",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSfZZc9m5R3aJC4UXFQQtkhBplFhdrXn6XXsDiBJ_gm1hwKQhw/formResponse?usp=pp_url&entry.1535730519={{payload.0}}&entry.1403657736={{payload.1}}&entry.1919280745={{payload.2}}&entry.820882425={{payload.3}}&entry.1961666940={{payload.4}}",
+        "tls": "",
+        "x": 290,
+        "y": 2440,
+        "wires": [
+            [
+                "952878e7.a7d728"
+            ]
+        ]
+    },
+    {
+        "id": "7a25d435.814a4c",
+        "type": "firebase modify",
+        "z": "f3b204a8.28e8c8",
+        "name": "fanspeed",
+        "firebaseconfig": "9e6f9654.f0a1b8",
+        "childpath": "z0BTa3BYrfe7xi8QGzn5yiPaHll1/symp/demo/fanspeed",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 760,
+        "y": 2320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "192c84b4.3be0ab",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "fanspeed",
+        "func": "var data = flow.get(\"fanspeed\");\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 2320,
+        "wires": [
+            [
+                "7a25d435.814a4c"
+            ]
+        ]
+    },
+    {
+        "id": "fb48d177.d39ae",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "tempset",
+        "func": "var data = flow.get(\"tempset\");\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 2380,
+        "wires": [
+            [
+                "78a6be30.794c6"
+            ]
+        ]
+    },
+    {
+        "id": "9416a147.c84ef",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "roomtemp",
+        "func": "var data = flow.get(\"roomtemp\");\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 2440,
+        "wires": [
+            [
+                "e23bbe1d.3572a"
+            ]
+        ]
+    },
+    {
+        "id": "78a6be30.794c6",
+        "type": "firebase modify",
+        "z": "f3b204a8.28e8c8",
+        "name": "tempset",
+        "firebaseconfig": "9e6f9654.f0a1b8",
+        "childpath": "z0BTa3BYrfe7xi8QGzn5yiPaHll1/symp/demo/tempset",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 760,
+        "y": 2380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e23bbe1d.3572a",
+        "type": "firebase modify",
+        "z": "f3b204a8.28e8c8",
+        "name": "roomtemp",
+        "firebaseconfig": "9e6f9654.f0a1b8",
+        "childpath": "z0BTa3BYrfe7xi8QGzn5yiPaHll1/symp/demo/roomtemp",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 760,
+        "y": 2440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f811fc0b.a906d",
+        "type": "delay",
+        "z": "f3b204a8.28e8c8",
+        "name": "storm protection",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "10",
+        "randomLast": "100",
+        "randomUnits": "milliseconds",
+        "drop": false,
+        "x": 240,
+        "y": 2380,
+        "wires": [
+            [
+                "c88f8258.58a6e"
+            ]
+        ]
+    },
+    {
+        "id": "516ac05b.eae41",
+        "type": "inject",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "120",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "x": 110,
+        "y": 2440,
+        "wires": [
+            [
+                "1c325caa.868763"
+            ]
+        ]
+    },
+    {
+        "id": "952878e7.a7d728",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 370,
+        "y": 2480,
+        "wires": []
+    }
+]

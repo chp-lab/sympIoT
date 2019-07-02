@@ -1,0 +1,425 @@
+<html>
+	<head>
+		<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/chatpeth/symp/master/public/images/pie-chart.png">
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+		var sid = '1U76bS6qEGz4IkNh1tWYyjYJvPvRDnzviQsAN5TpTGWE';
+		var tmpOffset = 0;
+		var realtimeSpan = 60;
+		google.charts.load("current", {packages:["corechart"]});
+		google.charts.setOnLoadCallback(setDate);
+		//google.charts.setOnLoadCallback(drawGID);
+		google.charts.setOnLoadCallback(drawAtDate);
+		google.charts.setOnLoadCallback(getOffset);
+		
+		setInterval(vertualRealtime, 15000);
+		
+		var cname = "Production line1";
+		function setDate(){
+			var d = new Date();
+			var _today = d.getFullYear() + "-" + (d.getMonth() + 1).toString() + "-" + d.getDate() + " 00:00:00";
+			var tomorrow = new Date();
+			tomorrow.setDate(d.getDate() + 1);
+			var _tomorrow = tomorrow.getFullYear() + "-" + (tomorrow.getMonth() + 1).toString() + "-" + tomorrow.getDate() + " 00:00:00";
+						
+			console.log("today= " + _today);
+			console.log("tomorrow= " + _tomorrow);
+			document.getElementById("startDate").value = _today;
+			document.getElementById("endDate").value = _tomorrow;
+			
+		}
+			
+		
+		function drawGID() {
+			var tmpTq = "SELECT A, ";
+			var arrTq1 = document.getElementById("parameter1").value.split("-");
+			var arrTq2 = document.getElementById("parameter2").value.split("-");
+			var tmpTq1 = arrTq1[0];
+			var tmpTq2 = arrTq2[0];
+			var _analyTq;
+			var limit = document.getElementById("limit").value;
+			var offset = document.getElementById("offset").value;
+			
+			console.log("_analyTq=" + _analyTq);
+			
+			console.log("tmpTq1=" + tmpTq1 + " tmpTq2=" + tmpTq2);
+			
+			if((tmpTq1 == tmpTq2) || (tmpTq1 == "H"))
+			{
+				tmpTq2 = "hidden";
+				document.getElementById("parameter2").value = "hidden-blank";
+			}
+			
+			if(tmpTq2 == "hidden")
+			{
+				_analyTq = "SELECT G, MAX(" + arrTq1[0] + "), AVG(" + arrTq1[0] + "), MIN(" + arrTq1[0] + ") group by G";
+				if(tmpTq1 == "H")
+				{
+					tmpTq = "SELECT A, H WHERE H is NOT NULL";
+				}
+				else
+				{
+					tmpTq = tmpTq + tmpTq1;
+				}
+			}
+			
+			else
+			{
+				_analyTq = "SELECT G, MAX(" + arrTq1[0] + "), AVG(" + arrTq1[0] + "), MIN(" + arrTq1[0] + "), MAX(" + arrTq2[0] +
+				"), AVG(" + arrTq2[0] + "), MIN(" + arrTq2[0] + ") group by G";
+				tmpTq = tmpTq + tmpTq1 + ", " + tmpTq2;
+			}
+			
+			if(limit == "0")
+			{
+				tmpTq = tmpTq + " OFFSET " + offset;
+			}
+			else
+			{
+				tmpTq = tmpTq + " LIMIT " + limit + " OFFSET " + offset;
+			}
+			
+			console.log("tmpTq" + tmpTq);
+			var queryString = encodeURIComponent(tmpTq);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString);
+			query.send(handleQueryResponse);
+			
+			// Data Analysis
+			var _analyQueryString = encodeURIComponent(_analyTq);
+			var _analyQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + _analyQueryString);
+			_analyQuery.send(dataAnalysisResponse);
+			
+			vertualRealtime();
+		}
+		
+		function vertualRealtime()
+		{
+			var tq = "SELECT A, ";
+			var elementCount;
+			var arrTq1 = document.getElementById("parameter1").value.split("-");
+			var arrTq2 = document.getElementById("parameter2").value.split("-");
+			
+			if(arrTq2[0] == "hidden")
+			{
+				tq = tq + arrTq1[0] + " OFFSET " + tmpOffset;
+			}
+			else
+			{
+				tq = tq + arrTq1[0] + ", " + arrTq2[0] + " OFFSET " + tmpOffset;
+			}
+			
+			console.log(tq);
+			if(tmpOffset == 0)
+			{
+				console.log("Waiting Offset");
+				return;
+			}
+			tmpOffset = tmpOffset + 1;
+			//console.log("vertualRealtime: tmpOffset= " + tmpOffset);
+			var queryString = encodeURIComponent(tq);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString);
+			query.send(realtimeResponse);
+		}
+		
+		function realtimeResponse(response)
+		{
+			if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+			}
+			var data = response.getDataTable();
+			var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+			
+			var options = {
+				title: "Real-time",
+					height: 400,
+					crosshair: { trigger: 'both', color: 'yellow'}, // Display crosshairs on focus and selection.
+					// Gives each series an axis that matches the vAxes number below.
+					series: {
+						0: {targetAxisIndex: 0, lineWidth: 2},
+						1: {targetAxisIndex: 1, lineWidth: 2}
+					},
+					vAxes: {
+					// Adds titles to each axis.
+						0: {title: document.getElementById("parameter1").value.split("-")[1]},
+						1: {title: document.getElementById("parameter2").value.split("-")[1]}
+					},
+			};
+			chart.draw(data, options);
+			
+		}
+		
+		function handleQueryResponse(response) {
+			console.log("drawing graph");
+			if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+			}
+			var data = response.getDataTable();
+			
+			try
+			{
+				console.log("Number of point: " + data.wg.length);
+				document.getElementById("numberOfElement").innerHTML = "Number of point: " + data.wg.length.toString();
+			}catch(err){
+				document.getElementById("numberOfElement").innerHTML = err.message;
+			}
+			//console.log(data);
+			
+			// Detect type of chart
+			var chartType = document.getElementById("chartType").value;
+			// --- End ---
+			
+			if(chartType == "line")
+			{
+				var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+				var options = {
+					title: cname,
+					height: 600,
+					crosshair: { trigger: 'both', color: 'yellow'}, // Display crosshairs on focus and selection.
+					// Gives each series an axis that matches the vAxes number below.
+					series: {
+						0: {targetAxisIndex: 0, lineWidth: 2},
+						1: {targetAxisIndex: 1, lineWidth: 2}
+					},
+					vAxes: {
+					// Adds titles to each axis.
+						0: {title: document.getElementById("parameter1").value.split("-")[1]},
+						1: {title: document.getElementById("parameter2").value.split("-")[1]}
+					},
+				
+				};
+			}
+			else if(chartType == "scatterWithTrend")
+			{
+				var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+				var options = {
+					title: cname,
+					height: 600,
+					crosshair: { trigger: 'both', color: 'yellow'}, // Display crosshairs on focus and selection.
+					// Gives each series an axis that matches the vAxes number below.
+					series: {
+						0: {targetAxisIndex: 0},
+						1: {targetAxisIndex: 1}
+					},
+					vAxes: {
+					// Adds titles to each axis.
+						0: {title: document.getElementById("parameter1").value.split("-")[1]},
+						1: {title: document.getElementById("parameter2").value.split("-")[1]}
+					},
+					
+					trendlines: {
+						0: {visibleInLegend: true},	
+						1: {visibleInLegend: true},	
+					},
+					pointSize: 1,
+					
+				};
+			}
+			else
+			{
+				var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+				var options = {
+					title: cname,
+					height: 600,
+					crosshair: { trigger: 'both', color: 'yellow'}, // Display crosshairs on focus and selection.
+					// Gives each series an axis that matches the vAxes number below.
+					series: {
+						0: {targetAxisIndex: 0}, 
+						1: {targetAxisIndex: 1}
+					},
+					vAxes: {
+					// Adds titles to each axis.
+						0: {title: document.getElementById("parameter1").value.split("-")[1]},
+						1: {title: document.getElementById("parameter2").value.split("-")[1]}
+					},
+					pointSize: 1,
+				};
+			}
+			
+			chart.draw(data, options);
+    }
+		
+		function dataAnalysisResponse(response){
+			if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+			}
+			var data = response.getDataTable();
+			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+			var options = {
+				title: "Analysis",
+				bar: {groupWidth: "25%"},
+			};
+			var options2 = {
+				title: "Analysis",
+				bar: {groupWidth: "25%"},
+			};
+			
+			chart.draw(data, options2);
+			
+		}
+		
+		function getOffset(qMsg){
+			qMsg = "SELECT COUNT(A)";
+			var queryString = encodeURIComponent(qMsg);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString);
+			query.send(getOffResponse);
+		}
+		
+		function getOffResponse(response){
+			if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+			}
+			var data = response.getDataTable();
+			tmpOffset = data.wg[0].c[0].v;
+			tmpOffset = tmpOffset - realtimeSpan;
+			if(tmpOffset < 0)
+			{
+				tmpOffset = 1;
+			}
+			console.log("getOffResponse: tmpOffset= " + tmpOffset);
+			vertualRealtime();
+		}
+		
+		function testQuery(testMsg){
+			console.log("Start query: " + testMsg);
+			var queryString = encodeURIComponent(testMsg);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString);
+			query.send(testQueryResponse);
+		}
+		function testQueryResponse(response){
+			if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+			}
+			var data = response.getDataTable();
+			console.log(data);
+			console.log("Testing complete");
+		}
+		
+		function drawAtDate(){
+			var startDate = document.getElementById("startDate").value;
+			var endDate = document.getElementById("endDate").value;
+			var arrTq1 = document.getElementById("parameter1").value.split("-");
+			var arrTq2 = document.getElementById("parameter2").value.split("-");
+			var tmpTq1 = arrTq1[0];
+			var tmpTq2 = arrTq2[0];
+			var _analyTq;
+			
+			if((tmpTq1 == tmpTq2) || (tmpTq1 == "H"))
+			{
+				tmpTq2 = "hidden";
+				document.getElementById("parameter2").value = "hidden-blank";
+			}
+			
+			if(tmpTq2 == "hidden")
+			{
+				_analyTq = "SELECT G, MAX(" + arrTq1[0] + "), AVG(" + arrTq1[0] + "), MIN(" + arrTq1[0] + ") WHERE (A > datetime \'" + startDate + "\') AND (A < datetime \'" + endDate + "\') group by G";
+				console.log("db0x02");
+				console.log(_analyTq);
+				if(tmpTq1 == "H")
+				{
+					var dateTq1 = "SELECT A, " + tmpTq1 + " WHERE ( H is NOT NULL ) AND ((A > " + "datetime \'" + startDate + "\') AND (A < datetime \'" + endDate + "\'))";
+				}
+				else
+				{
+					var dateTq1 = "SELECT A, " + tmpTq1 + " WHERE (A > " + "datetime \'" + startDate + "\') and (A < datetime \'" + endDate + "\')";
+				}
+			}
+			else
+			{
+				_analyTq = "SELECT G, MAX(" + arrTq1[0] + "), AVG(" + arrTq1[0] + "), MIN(" + arrTq1[0] + "), MAX(" + arrTq2[0] +
+				"), AVG(" + arrTq2[0] + "), MIN(" + arrTq2[0] + ") WHERE (A > datetime \'" + startDate + "\') AND (A < datetime \'" + endDate + "\') group by G";
+				var dateTq1 = "SELECT A, " + tmpTq1 + "," + tmpTq2 + " WHERE (A > " + "datetime \'" + startDate + "\') and (A < datetime \'" + endDate + "\')";
+			}	
+						
+			console.log("dateTq1= " + dateTq1);
+			var queryString = encodeURIComponent(dateTq1);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + queryString);
+			query.send(handleQueryResponse);
+			
+			// Data Analysis
+			var _analyQueryString = encodeURIComponent(_analyTq);
+			var _analyQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=0&headers=1&tq=' + _analyQueryString);
+			_analyQuery.send(dataAnalysisResponse);
+			
+			vertualRealtime();
+		}
+
+		
+		</script>
+		<style>
+		#block_container {
+			text-align: center;
+		}
+		#block_container > div {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		</style>
+		<style>
+		#setup {
+			text-align: left;
+		}
+		#setup > div {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		</style>
+	</head>
+	<h1 id="logID">Chp Lab V2.2</h1>
+	<body>
+	<div id="block_container">
+	<div id="chart_div" style="width: 1200px; height: 600px;"></div>
+	<div id="chart_div2" style="width:800px; height: 300px;"></div>
+	<div id="chart_div3" style="width:1200px; height: 400px;"></div>
+	</div><br><br>
+	<div id="setup">
+	Chart type:
+	<select id="chartType">
+		<option value="scatter">Scatter</option>
+		<option value="scatterWithTrend">Trend</option>
+		<option value="line">Line Chart</option>
+	</select><br><br>
+	
+	Parameter1:
+	<select id="parameter1">
+		<option value="C-Voltage" >V</option>
+		<option value="B-Current" >I</option>
+		<option value="D-Power Factor" >PF</option>
+		<option value="E-Power" >P</option>
+		<option value="F-Energy" >E</option>
+		<option value="H-Peak" >Peak</option>
+	</select><br><br>
+	Parameter2:
+	<select id="parameter2">
+		<option value="hidden-blank">hide</option>
+		<option value="B-Current" >I</option>
+		<option value="C-Voltage" >V</option>
+		<option value="D-Power Factor" >PF</option>
+		<option value="E-Power" >P</option>
+		<option value="F-Energy" >E</option>
+	</select><br><br>
+	
+	Start Date: <input type="text" id="startDate" value="yyyy-mm-dd"><br><br>
+	End Date: <input type="text" id="endDate" value="yyyy-mm-dd"> <br><br>
+	<button id="drawDate" onclick="drawAtDate()">Show at specific date</button><br>
+	<p id="numberOfElement">Number of point: </p>
+	Limit: <input type="text" id="limit" value="0"><br><br>
+	Offset: <input type="text" id="offset" value="0"> <br><br>
+	<button id="drawPoint" onclick="drawGID()">Show at specific points</button><br><br>
+	<form action="/live/powermeter" method="GET">
+		<input type="submit" value="Live view >>">
+	</form>
+	</div>
+	
+	<a href="https://docs.google.com/spreadsheets/d/1xHz_6CtPh5749MrbuCZn4fs7lCsAZ_HoIWy4waylcB0/edit?usp=sharing">Download</a><br><br>
+	<a href="https://drive.google.com/drive/folders/1-ILmJAj8ALzPHvg5dmu5zG1Y8wU9QoSS">Storage</a>
+	
+
+	
+	</body>
+</html>
+  

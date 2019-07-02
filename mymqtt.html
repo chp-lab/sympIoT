@@ -1,0 +1,375 @@
+<html>
+<head>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/chatpeth/symp/master/public/images/pie-chart.png">
+<link rel="stylesheet" type="text/css" href="/css/mqtt.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	var deviceLocation = "aloft/rm100/";
+	var helloReq = "req/aloft/rm100";
+	var helloRes = "res/aloft/rm100/";
+  // Create a client instance
+  client = new Paho.MQTT.Client("m15.cloudmqtt.com", 39824, "ee5610110106");
+  //Example client = new Paho.MQTT.Client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
+
+  // set callback handlers
+  client.onConnectionLost = onConnectionLost;
+  client.onMessageArrived = onMessageArrived;
+  var options = {
+    useSSL: true,
+    userName: "clsfhsja",
+    password: "DAo215QBjmZ1",
+    onSuccess:onConnect,
+    onFailure:doFail
+  }
+
+  // connect the client
+  client.connect(options);
+
+  // called when the client connects
+  function onConnect() {
+    // Once a connection has been made, make a subscription and send a message.
+    console.log("onConnect");
+    client.subscribe(helloRes + "op");
+	client.subscribe(helloRes + "c");
+	client.subscribe(helloRes + "sh");
+	client.subscribe(helloRes + "fi");
+	client.subscribe(helloRes + "ti");
+	client.subscribe(helloRes + "fo");
+	client.subscribe(helloRes + "to");
+	client.subscribe(helloRes + "tu");
+	client.subscribe(helloRes + "td");
+	client.subscribe(helloRes + "_o");
+	client.subscribe(helloRes + "_c");
+	client.subscribe(helloRes + "co");
+	client.subscribe(helloRes + "_d");
+	client.subscribe(helloRes + "li");
+	client.subscribe(helloRes + "en");
+	client.subscribe(helloRes + "hd");
+	client.subscribe(helloRes + "hu");
+	client.subscribe(helloRes + "h1");
+	client.subscribe(helloRes + "h2");
+	
+	client.subscribe(helloRes + "c33");
+	client.subscribe(helloRes + "c34");
+	client.subscribe(helloRes + "c35");
+	client.subscribe(helloRes + "c36");
+	client.subscribe(helloRes + "c37");
+	client.subscribe(helloRes + "c21");
+	client.subscribe(helloRes + "c30");
+	client.subscribe(helloRes + "c41");
+	
+	client.subscribe(deviceLocation + "op");
+	client.subscribe(deviceLocation + "c");
+	client.subscribe(deviceLocation + "sh");
+	client.subscribe(deviceLocation + "fi");
+	client.subscribe(deviceLocation + "ti");
+	client.subscribe(deviceLocation + "fo");
+	client.subscribe(deviceLocation + "to");
+	client.subscribe(deviceLocation + "tu");
+	client.subscribe(deviceLocation + "td");
+	client.subscribe(deviceLocation + "_o");
+	client.subscribe(deviceLocation + "_c");
+	client.subscribe(deviceLocation + "co");
+	client.subscribe(deviceLocation + "_d");
+	client.subscribe(deviceLocation + "li");
+	client.subscribe(deviceLocation + "en");
+	client.subscribe(deviceLocation + "hd");
+	client.subscribe(deviceLocation + "hu");
+	client.subscribe(deviceLocation + "h1");
+	client.subscribe(deviceLocation + "h2");
+	
+	client.subscribe(deviceLocation + "c33");
+	client.subscribe(deviceLocation + "c34");
+	client.subscribe(deviceLocation + "c35");
+	client.subscribe(deviceLocation + "c36");
+	client.subscribe(deviceLocation + "c37");
+	client.subscribe(deviceLocation + "c21");
+	client.subscribe(deviceLocation + "c30");
+	client.subscribe(deviceLocation + "c41");
+	
+	
+    message = new Paho.MQTT.Message("hello");
+    message.destinationName = helloReq;
+    client.send(message);
+	
+  }
+
+  function doFail(e){
+    console.log("Failed");
+	console.log(e);
+  }
+
+  // called when the client loses its connection
+  function onConnectionLost(responseObject) {
+    if (responseObject.errorCode !== 0) {
+		console.log("onConnectionLost:"+responseObject.errorMessage);
+		location.reload();
+	  
+    }
+  }
+
+  // called when a message arrives
+  function onMessageArrived(message) {
+    var topic = message.destinationName;
+	var payload = message.payloadString;
+	//console.log("onMessageArrived " + "topic: " + topic + ", payload: " + payload);
+	
+	var checkGUI = topic.split("/")[0];
+	console.log("checkGUI= " + checkGUI);
+	msg = payload.toString();
+	if(msg == "true")
+	{
+		msg = "yes";
+	}
+	else if(msg == "false")
+	{
+		msg = "no";
+	}
+	
+	
+	if(checkGUI == "res")
+	{
+		var rowId = topic.replace(helloRes, "");
+		console.log("Update GUI of " + rowId);
+		if(rowId == "en")
+		{
+			console.log("db0x01");
+			document.getElementById("en").innerHTML = "Time door open: " + msg;
+		}
+		else
+		{
+			document.getElementById(rowId).innerHTML = msg;
+		}
+	}
+	else
+	{
+		var rowId = topic.replace(deviceLocation, "");
+		console.log("Update GUI of " + rowId);
+		document.getElementById(rowId).innerHTML = msg;
+	}
+	
+  }
+</script>
+</head>
+<body>
+<script type="text/javascript">
+function onPub(){
+	var topic = document.getElementById("topic").value;
+	var msg = document.getElementById("msg").value;
+	pub(topic, msg)
+}
+
+function onSub(){
+	var topic = document.getElementById("topic").value;
+	sub(topic);
+}
+function sub(topic){
+	client.subscribe(topic);
+	console.log("subscribe for " + topic);
+}
+function pub(topic, payload){
+	
+	message = new Paho.MQTT.Message(payload);
+    message.destinationName = topic;
+    client.send(message);
+	console.log("publish topic: " + topic + ", payload: " + payload);
+}
+
+/*
+function updateValue(){
+	document.getElementById("op").innerHTML = 2;
+}
+*/
+
+function setTo(){
+	var paramName = document.getElementById("paramName").value;
+	var topic = deviceLocation + paramName;
+	var payload = document.getElementById("setToValue").value;
+	console.log("set " + topic + " to " + payload);
+	pub(topic, payload)
+}
+
+function factoryReset() {
+
+	var r = confirm("Setting function to default ?");
+	
+	if(r == false)
+	{
+		return;
+	}
+	
+	pub(deviceLocation + "op", "1");
+	pub(deviceLocation + "c", "0");
+	pub(deviceLocation + "sh", "1");
+	pub(deviceLocation + "fi", "3");
+	pub(deviceLocation + "ti", "23");
+	pub(deviceLocation + "fo", "0");
+	pub(deviceLocation + "to", "27");
+	pub(deviceLocation + "tu", "32");
+	pub(deviceLocation + "td", "16");
+	pub(deviceLocation + "_o", "20");
+	pub(deviceLocation + "_c", "60");
+	pub(deviceLocation + "co", "45");
+	pub(deviceLocation + "_d", "30");
+	pub(deviceLocation + "li", "20");
+	pub(deviceLocation + "hd", "40");
+	pub(deviceLocation + "hu", "80");
+	pub(deviceLocation + "h1", "1");
+	pub(deviceLocation + "h2", "2");
+}
+</script>
+<div class="setup" id="setting">
+
+<select class="setup" id="paramName">
+		<option value="op">Functions for Unoccupied Mode</option>
+		<option value="c">Calibrate temperature</option>
+		<option value="sh">Show Temperature</option>
+		<option value="fi">Fan Speed insert card</option>
+		<option value="ti">Temperature insert card</option>
+		<option value="fo">Fan speed removed card and unoccupied mode</option>
+		<option value="to">Temperature removed card and unoccupied mode(C)</option>
+		<option value="tu">Temperature Maximum(C)</option>
+		<option value="td">Temperature Minimum(C)</option>
+		<option value="_o">Timer for A/C On(min)</option>
+		<option value="_c">Timer for A/C Close(min)</option>
+		<option value="co">Time for removed card out(sec)</option>
+		<option value="_d">Time Motion checking detect(min)</option>
+		<option value="li">Limit temperature for control valve(C)</option>
+		<option value="en">Time door open</option>
+		<option value="hd">Humidity Minimum(%)</option>
+		<option value="hu">Humidity Maximum(%)</option>
+		<option value="h1">Humidity Function1</option>
+		<option value="h2">Humidity Function2</option>
+</select>
+set to: <input type="text" id="setToValue" value="0">
+<button class="setup" id="setBtn" onclick="setTo()">Set</button>
+</div>
+
+<div class="holdingRegister" id="parameterDiv">
+<table class="holdingRegister" id="paramTable">
+  <tr>
+    <th>Parameter</th>
+    <th>value</th>     
+  </tr>
+  <tr>
+    <td>Functions for Unoccupied Mode</td>
+    <td id="op"></td>
+  </tr>
+  <tr>
+    <td>Calibrate temperature</td>
+    <td id="c"></td>
+  </tr>
+  <tr>
+    <td>Show Temperature</td>
+    <td id="sh"></td>
+  </tr>
+  <tr>
+    <td>Fan Speed insert card</td>
+    <td id="fi"></td>
+  </tr>
+  <tr>
+    <td>Temperature insert card(C)</td>
+    <td id="ti"></td>
+  </tr>
+  <tr>
+    <td>Fan speed removed card and unoccupied mode</td>
+    <td id="fo"></td>
+  </tr>
+  <tr>
+    <td>Temperature removed card and unoccupied mode(C)</td>
+    <td id="to"></td>
+  </tr>
+  <tr>
+    <td>Temperature Maximum(C)</td>
+    <td id="tu"></td>
+  </tr>
+  <tr>
+    <td>Temperature Minimum(C)</td>
+    <td id="td"></td>
+  </tr>
+  <tr>
+    <td>Timer for A/C On(min)</td>
+    <td id="_o"></td>
+  </tr>
+  <tr>
+    <td>Timer for A/C Close(min)</td>
+    <td id="_c"></td>
+  </tr>
+  <tr>
+    <td>Time for removed card out(sec)</td>
+    <td id="co"></td>
+  </tr>
+  <tr>
+    <td>Time Motion checking detect(min)</td>
+    <td id="_d"></td>
+  </tr>
+  <tr>
+    <td>Limit temperature for control valve(C)</td>
+    <td id="li"></td>
+  </tr>
+  <tr>
+    <td>Humidity Minimum(%)</td>
+    <td id="hd"></td>
+  </tr>
+  <tr>
+    <td>Humidity Maximum(%)</td>
+    <td id="hu"></td>
+  </tr>
+  <tr>
+    <td>Humidity Function1</td>
+    <td id="h1"></td>
+  </tr>
+  <tr>
+    <td>Humidity Function2</td>
+    <td id="h2"></td>
+  </tr>
+</table>
+	<p class="holdingRegister" id="en">Time door open: </p>
+</div>
+<div class="reset" id="resetToDefault">
+	<button class="reset" id="resetBtn" onclick="factoryReset()">reset</b>
+</div>
+
+<div class="coil" id="readCoil">
+<table class="coil" id="coilTable">
+	<tr>
+		<th>Parameter</th>
+		<th>status</th>     
+	</tr>
+	<tr>
+		<td>Motion1 Error</td>
+		<td id="c33"></td>
+	</tr>
+	<tr>
+		<td>Motion2 Error</td>
+		<td id="c34"></td>
+	</tr>
+	<tr>
+		<td>Motion3 Error</td>
+		<td id="c35"></td>
+	</tr>
+	<tr>
+		<td>Motion4 Error</td>
+		<td id="c36"></td>
+	</tr>
+	<tr>
+		<td>Motion5 Error</td>
+		<td id="c37"></td>
+	</tr>
+	<tr>
+		<td>In out room</td>
+		<td id="c21"></td>
+	</tr>
+	<tr>
+		<td>Keycard</td>
+		<td id="c30"></td>
+	</tr>
+	<tr>
+		<td>Magnetic</td>
+		<td id="c41"></td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

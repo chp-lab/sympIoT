@@ -1,0 +1,185 @@
+<html>
+	<head>
+	<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/chatpeth/symp/master/public/images/pie-chart.png">
+	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script>
+	google.charts.load('current', {'packages':['gauge']});
+	google.charts.setOnLoadCallback(drawGauge);
+	
+	//refference->https://firebase.google.com/docs/database/web/read-and-write
+	// Initialize Firebase
+	var volmeter, ampmeter, pfmeter, wattmeter, kwhmeter;
+	var firebaseKey = "z0BTa3BYrfe7xi8QGzn5yiPaHll1";
+	var config = {
+		apiKey: "AIzaSyCkVdTESVUG_BZwjqxFPyTvE36IAqE4-JA",
+		authDomain: "wpm2019-403f9.firebaseapp.com",
+		databaseURL: "https://wpm2019-403f9.firebaseio.com",
+		projectId: "wpm2019-403f9",
+		storageBucket: "wpm2019-403f9.appspot.com",
+		messagingSenderId: "480780089854"
+	};
+	firebase.initializeApp(config);
+	
+	
+	// Get a reference to the database service
+	var database = firebase.database();
+	database.ref(firebaseKey + '/billing/meter1/location').once('value').then(function(snapshot){
+		document.getElementById('liveID').innerHTML  = snapshot.val();
+		console.log(snapshot.val());
+	});
+	
+	var voltage = database.ref(firebaseKey + '/billing/V');
+	voltage.on('value', function(snapshot){
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['Volt', 0],
+		]);
+		
+		var options = {
+			width: 200, height: 120,
+			redFrom: 230, redTo: 250,
+			yellowFrom:190, yellowTo: 230,
+			minorTicks: 5,
+			max: 250,
+		};
+		
+		data.setValue(0, 1, snapshot.val());
+		volmeter.draw(data, options);
+		//console.log(snapshot.val());
+	});
+	
+	var current = database.ref(firebaseKey + '/billing/A');
+	current.on('value', function(snapshot){
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['Amp', 0],
+		]);
+		
+		var options = {
+			width: 200, height: 120,
+			redFrom: 0.06, redTo: 0.08,
+			yellowFrom:0.03, yellowTo: 0.06,
+			minorTicks: 11,
+			majorTicks: 6,
+			max: 0.08,
+		};
+		
+		data.setValue(0, 1, snapshot.val());
+		ampmeter.draw(data, options);
+	});
+	
+	var powerfactor = database.ref(firebaseKey + '/billing/pf');
+	powerfactor.on('value', function(snapshot){
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['pf', 0],
+		]);
+		
+		var options = {
+			width: 200, height: 120,
+			redFrom: 0, redTo: 0.4,
+			yellowFrom:0.4, yellowTo: 0.6,
+			minorTicks: 11,
+			majorTicks: 6,
+			max: 1,
+		};
+		
+		data.setValue(0, 1, snapshot.val());
+		pfmeter.draw(data, options);
+	});
+	
+	var power = database.ref(firebaseKey + '/billing/P');
+	power.on('value', function(snapshot){
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['Watt', 0],
+		]);
+		
+		var options = {
+			width: 200, height: 120,
+			redFrom: 1.8, redTo: 2.5,
+			yellowFrom:1, yellowTo: 1.8,
+			majorTicks: "6",
+			minorTicks: 5,
+			max: 2.5,
+		};
+		
+		data.setValue(0, 1, snapshot.val());
+		wattmeter.draw(data, options);
+	});
+	
+	var energy = database.ref(firebaseKey + '/billing/E');
+	energy.on('value', function(snapshot){
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['kWh', 0],
+		]);
+		
+		var options = {
+			width: 200, height: 120,
+			minorTicks: 5,
+			max: 10,
+		};
+		
+		data.setValue(0, 1, snapshot.val());
+		kwhmeter.draw(data, options);
+	});
+	
+	function writeUserData(mid, almParameter, almMinor, almCritical)
+	{
+		database.ref(firebaseKey + '/billing/alarm/minor/' + almParameter).set(almMinor);
+		database.ref(firebaseKey + '/billing/alarm/critical/' + almParameter).set(almCritical);
+		console.log("Complete");
+	}
+	function establishData()
+	{
+		var mid = document.getElementById("mid").value;
+		var almParameter = document.getElementById("almParameter").value;
+		var almMinor = document.getElementById("almMinor").value;
+		var almCritical = document.getElementById("almCritical").value;
+		writeUserData(mid, almParameter, almMinor, almCritical);
+	}
+
+	
+	function drawGauge(){
+		volmeter = new google.visualization.Gauge(document.getElementById('chart_div'));
+		ampmeter = new google.visualization.Gauge(document.getElementById('chart_div2'));
+		pfmeter = new google.visualization.Gauge(document.getElementById('chart_div3'));
+		wattmeter = new google.visualization.Gauge(document.getElementById('chart_div4'));
+		kwhmeter = new google.visualization.Gauge(document.getElementById('chart_div5'));;
+	}
+	</script>
+	<style>
+	#block_container {
+    text-align: center;
+	}
+	#block_container > div {
+    display: inline-block;
+    vertical-align: middle;
+	}
+	</style>
+	<h2 id="liveID">Live</h3>
+	<body>
+	<div id="block_container">
+		<div id="chart_div" style="width: 200px; height: 120px;"></div>
+		<div id="chart_div2" style="width: 200px; height: 120px;"></div>
+		<div id="chart_div3" style="width: 200px; height: 120px;"></div>
+		<div id="chart_div4" style="width: 200px; height: 120px;"></div>
+		<div id="chart_div5" style="width: 200px; height: 120px;"></div>
+	</div><br><br>
+		MID: <input type="text" id="mid" value="Meter ID"><br><br>
+		Parameter: <input type="text" id="almParameter" value="X"> <br><br>
+		Minor: <input type="text" id="almMinor" value="80"> <br><br>
+		Critical: <input type="text" id="almCritical" value="100"> <br><br>
+		<button id="setUser", onclick="establishData()"> 
+		Set Alarm
+		</button><br><br>	    
+		<form action="/powermeter" method="GET">
+			<input type="submit" value="Power Meter >>">
+		</form>
+		
+	</body>
+</head>
+</html>

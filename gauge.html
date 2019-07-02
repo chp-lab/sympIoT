@@ -1,0 +1,43 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/material-gauge.css">
+    </head>
+    <body>
+    	<div class="gauge gauge--liveupdate" id="gauge">
+        	<div class="gauge__container">
+        		<div class="gauge__marker"></div>
+        		<div class="gauge__background"></div>
+        		<div class="gauge__center"></div>
+        		<div class="gauge__data" id="gaugeDataColor"></div>
+        		<div class="gauge__needle"></div>
+        	</div>
+        	<div class="gauge__labels mdl-typography__headline">
+            	<span class="gauge__label--low">0</span>
+            	<span class="gauge__label--spacer"></span>
+            	<span class="gauge__label--high">1</span>
+        	</div>
+    	</div>
+        <script src="/js/material-gauge.js"></script>
+		<script>
+			var gauge = new Gauge(document.getElementById("gauge"));
+			var tmp = 0;
+			gauge.value(0);
+			function addValue(){
+				
+				tmp = tmp + 0.1;
+				gauge.value(tmp);
+				
+				if(tmp > 0.8)
+				{
+					document.getElementById("gaugeDataColor").style.backgroundColor = "#ED3D3D";
+				}
+				else if(tmp > 0.5)
+				{
+					document.getElementById("gaugeDataColor").style.backgroundColor = "#F6F641";
+				}
+		}
+		</script>
+		<button class="addValue" onclick="addValue()">Add</button>
+	</body>
+</html>

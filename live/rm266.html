@@ -1,0 +1,93 @@
+<html>
+	<head>
+	<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/chatpeth/symp/master/public/images/pie-chart.png">
+	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script>
+	google.charts.load('current', {'packages':['gauge']});
+	google.charts.setOnLoadCallback(drawGauge);
+	
+	//refference->https://firebase.google.com/docs/database/web/read-and-write
+	// Initialize Firebase
+	var tempMeter, humidMeter;
+	var firebaseKey = "MjxY653KiDM6egJOtUGtvhDW0iJ2";
+	var config = {
+		apiKey: "AIzaSyCkVdTESVUG_BZwjqxFPyTvE36IAqE4-JA",
+		authDomain: "wpm2019-403f9.firebaseapp.com",
+		databaseURL: "https://wpm2019-403f9.firebaseio.com",
+		projectId: "wpm2019-403f9",
+		storageBucket: "wpm2019-403f9.appspot.com",
+		messagingSenderId: "480780089854"
+	};
+	firebase.initializeApp(config);
+	
+	
+	// Get a reference to the database service
+	var database = firebase.database();
+	
+	var temp = database.ref(firebaseKey + '/room266/temp');
+	var humid = database.ref(firebaseKey + '/room266/humid');
+	
+	temp.on('value', function(snapshot){
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['Temp', 0],
+		]);
+		
+		var options = {
+			width: 300, height: 200,
+			redFrom: 50, redTo: 100,
+			yellowFrom:30, yellowTo: 50,
+			minorTicks: 5,
+			max: 100,
+		};
+		
+		data.setValue(0, 1, snapshot.val());
+		tempMeter.draw(data, options);
+		//console.log(snapshot.val());
+	});
+	
+	humid.on('value', function(snapshot){
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['Humid', 0],
+		]);
+		
+		var options = {
+			width: 300, height: 200,
+			redFrom: 80, redTo: 100,
+			yellowFrom:70, yellowTo: 80,
+			minorTicks: 5,
+			max: 100,
+		};
+		
+		data.setValue(0, 1, snapshot.val());
+		humidMeter.draw(data, options);
+		//console.log(snapshot.val());
+	});
+	
+
+	
+	function drawGauge(){
+		tempMeter = new google.visualization.Gauge(document.getElementById('chart_div'));
+		humidMeter = new google.visualization.Gauge(document.getElementById('chart_div2'));
+	}
+	</script>
+	<style>
+	#chart_div {
+		padding: 10px 10px;
+	}
+	#chart_div2 {
+		margin-top: 30px;
+		padding: 10px 10px;
+	}
+	</style>
+	<h2 id="liveID">Live</h3>
+	<body>
+		<div id="chart_div" style="width: 400px; height: 240px;"></div>
+		<div id="chart_div2" style="width: 400px; height: 240px;"></div>
+		
+	</body>
+</head>
+</html>

@@ -1,0 +1,146 @@
+<html>
+
+<head>
+	<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/chatpeth/symp/master/public/images/pie-chart.png">
+	<link rel="stylesheet" type="text/css" href="/css/office.css">
+	<link rel="stylesheet" type="text/css" href="/css/material-gauge.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+	
+	<script type="text/javascript">
+		var deviceLocation = "aloft/rm100/";
+		var helloReq = "req/aloft/rm100";
+		var helloRes = "res/aloft/rm100/";
+		
+		let cid = Math.random().toString(36).substring(7);
+		console.log("random", cid);
+		
+		// Create a client instance
+		client = new Paho.MQTT.Client("m10.cloudmqtt.com", 37606, cid);
+		//Example client = new Paho.MQTT.Client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
+		// set callback handlers
+		client.onConnectionLost = onConnectionLost;
+		client.onMessageArrived = onMessageArrived;
+		
+		var options = {
+			useSSL: true,
+			userName: "wzvravkf",
+			password: "v1OZdLXaX06l",
+			onSuccess:onConnect,
+			onFailure:doFail
+		}
+		
+		// connect the client
+		client.connect(options);
+		
+		function onConnect() {
+			console.log("onConnect");
+			client.subscribe("chat/hello");
+			//client.subscribe("Punpun");
+			//client.subscribe("Papa");
+			
+		}
+		
+		function helloFunc(){
+			message = new Paho.MQTT.Message("Someone joined this conversation...");
+			message.destinationName = helloReq;
+			client.send(message);
+			console.log("hello msg");
+		}
+		
+		function doFail(e){
+			console.log("Failed");
+			console.log(e);
+		}
+		
+		// called when the client loses its connection
+		function onConnectionLost(responseObject) {
+			if (responseObject.errorCode !== 0) {
+				console.log("onConnectionLost");
+				
+			}
+		}
+
+		function onMessageArrived(message) {
+			var topic = message.destinationName.toString();
+			var payload = message.payloadString.toString();
+			var lastText = document.getElementById("msgPlain").innerHTML.toString();
+			
+			//console.log(lastText);
+			
+			document.getElementById("msgPlain").innerHTML = lastText + "<br>" +topic + ": " + payload;
+			
+		}
+		
+		
+		</script>
+
+			
+</head>
+
+<body>
+
+<script>
+	function onPub(){
+		var topic = document.getElementById("topic").value;
+		var msg = document.getElementById("payload").value;
+		pub(topic, msg)
+	}
+		
+	function onSub(){
+		var __src = document.getElementById("topic").value;
+		var __dest = document.getElementById("dest").value;
+		sub(__src);
+		sub(__dest);
+
+		document.getElementById("startChat").style.backgroundColor = "green";
+		
+
+	}
+		
+	function sub(topic){
+		client.subscribe(topic);
+		console.log("subscribe for " + topic);
+	}
+		
+	function pub(topic, payload){
+		
+		message = new Paho.MQTT.Message(payload);
+		message.destinationName = topic;
+		client.send(message);
+		console.log("publish topic: " + topic + ", payload: " + payload);
+	}
+	
+</script>
+<style>
+div {
+  border: 1px solid black;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 250px;
+  margin-left: 100px;
+  background-color: lightblue;
+}
+</style>
+
+<h2>Papa chat</h2>
+<div>
+<p>Papa, Punpun, Juju and Newyear</p>
+
+<input type="text" id="topic" value="Who are you ?">
+
+<input type="text" id="dest" value="Send to">
+<button class="cnt" id="startChat" onclick="onSub()">Start conversation</button>
+</br></br>
+
+<input type="text" id="payload" value="message">
+<button class="cnt" id="sentmsg" onclick="onPub()">Send</button>
+
+<p id="msgPlain"></p>
+</div>
+
+
+
+</body>
+
+</html> 

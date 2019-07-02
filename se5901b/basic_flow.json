@@ -1,0 +1,222 @@
+[
+    {
+        "id": "b5e36f07.e197e",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "req_all",
+        "topic": "req/aloft/rm100",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "89a24977.8a5fe8"
+            ]
+        ]
+    },
+    {
+        "id": "c6b53e36.e74c5",
+        "type": "modbus-getter",
+        "z": "f3b204a8.28e8c8",
+        "name": "all",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "117",
+        "server": "840851ba.b320c",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "efd3b579.220358"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "302c5164.9dfb3e",
+        "type": "mqtt out",
+        "z": "f3b204a8.28e8c8",
+        "name": "res_op",
+        "topic": "res/aloft/rm100/op",
+        "qos": "0",
+        "retain": "false",
+        "broker": "a068fec0.cb3bc",
+        "x": 690,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "efd3b579.220358",
+        "type": "function",
+        "z": "f3b204a8.28e8c8",
+        "name": "op",
+        "func": "msg.payload = msg.payload[108];\nmsg.topic = \"op\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "302c5164.9dfb3e",
+                "97d9a4f2.2c6b98"
+            ]
+        ]
+    },
+    {
+        "id": "97d9a4f2.2c6b98",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 710,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8440f4ba.685c08",
+        "type": "mqtt in",
+        "z": "f3b204a8.28e8c8",
+        "name": "op",
+        "topic": "aloft/rm100/op",
+        "qos": "0",
+        "broker": "a068fec0.cb3bc",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "f2ac9775.1b2428"
+            ]
+        ]
+    },
+    {
+        "id": "f2ac9775.1b2428",
+        "type": "modbus-write",
+        "z": "f3b204a8.28e8c8",
+        "name": "op",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "108",
+        "quantity": "1",
+        "server": "840851ba.b320c",
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "b8d484b4.afe238"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b8d484b4.afe238",
+        "type": "debug",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 440,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "89a24977.8a5fe8",
+        "type": "delay",
+        "z": "f3b204a8.28e8c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "c6b53e36.e74c5"
+            ]
+        ]
+    },
+    {
+        "id": "c0b995f2.ea7b08",
+        "type": "comment",
+        "z": "f3b204a8.28e8c8",
+        "name": "set",
+        "info": "subscribe for topic \"Op\" with mqtt broker\nand write to modbus slave",
+        "x": 130,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a1023b73.7383e8",
+        "type": "comment",
+        "z": "f3b204a8.28e8c8",
+        "name": "get",
+        "info": "subscribe for topic \"request current setting\" with \nmqtt broker, read data from modbus slave\nand publish to mqtt subscriber",
+        "x": 127,
+        "y": 59,
+        "wires": []
+    },
+    {
+        "id": "a068fec0.cb3bc",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "symp",
+        "broker": "m15.cloudmqtt.com",
+        "port": "19824",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "840851ba.b320c",
+        "type": "modbus-client",
+        "z": "",
+        "name": "modbusGateway",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "tcpHost": "192.168.100.102",
+        "tcpPort": "502",
+        "tcpType": "TPC-RTU-BUFFERED",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectTimeout": "2000"
+    }
+]
