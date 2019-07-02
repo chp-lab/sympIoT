@@ -1,0 +1,2 @@
+# sympIoT
+hospitality solution
