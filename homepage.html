@@ -3,8 +3,14 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/chatpeth/symp/master/public/images/pie-chart.png">
 <link rel="stylesheet" type="text/css" href="/css/office.css">
 </head>
-<h2>Rooms</h2>
-	<body>
+
+	<body onload="getUserInform()">
+	<h2>Home</h2>
+	<div class="userInformation">
+    <h3 id="uname"></h3>
+	</div>
+		
+		<div id=rommList>
 	    <form action="/rm315" method="GET">
 			<input type="submit" value="315">
 		</form>
@@ -84,6 +90,9 @@
 		<form action="/rm338" method="GET">
 			<input type="submit" value="338">
 		</form>
+		</div>
+		<button id="logoutBtn" onclick="logout()">logout</button>
 		
+		<script src="/jwt-vanilla.js"></script>
 	</body>
 </html>
