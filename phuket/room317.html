@@ -488,55 +488,6 @@
 			client.subscribe(helloRes + "Work_mode");
 			client.subscribe(helloRes + "Off_mode");
 
-			client.subscribe(deviceLocation + "Main_Board_ID");
-			client.subscribe(deviceLocation + "Fanspeed");
-			client.subscribe(deviceLocation + "Temp_setting");
-			client.subscribe(deviceLocation + "Temp_read");
-			client.subscribe(deviceLocation + "Temp_read_point");
-			client.subscribe(deviceLocation + "Humidity_read");
-			client.subscribe(deviceLocation + "Humidity_read_point");
-			
-			client.subscribe(deviceLocation + "Temperature_conpensate");
-			client.subscribe(deviceLocation + "Fanspeed_insert_card");
-			client.subscribe(deviceLocation + "Temperature_insert_card");
-			client.subscribe(deviceLocation + "Fan_speed_remove_card");
-			client.subscribe(deviceLocation + "Temperature_remove_card");
-			client.subscribe(deviceLocation + "Temperature_set_max");
-			client.subscribe(deviceLocation + "Temperature_set_min");
-			client.subscribe(deviceLocation + "Timer_fan_turn_on");
-			client.subscribe(deviceLocation + "Timer_fan_turn_off");
-			client.subscribe(deviceLocation + "Card_delay_removed");
-			client.subscribe(deviceLocation + "Option_out");
-			client.subscribe(deviceLocation + "Show_display");
-			client.subscribe(deviceLocation + "Motion_time_checking");
-			client.subscribe(deviceLocation + "Temperature_limit");
-			client.subscribe(deviceLocation + "Timer_for_entry_door");
-			client.subscribe(deviceLocation + "Humidity_min");
-			client.subscribe(deviceLocation + "Humidity_max");
-			client.subscribe(deviceLocation + "Function_humidity_min");
-			client.subscribe(deviceLocation + "Function_humidity_max");
-			client.subscribe(deviceLocation + "Humidity_compensate");
-			
-			client.subscribe(deviceLocation + "Relay1");
-			client.subscribe(deviceLocation + "Relay2");
-			client.subscribe(deviceLocation + "Relay3");
-			client.subscribe(deviceLocation + "Relay4");
-			client.subscribe(deviceLocation + "Relay5");
-			client.subscribe(deviceLocation + "Relay6");
-			client.subscribe(deviceLocation + "Relay7");
-			client.subscribe(deviceLocation + "Relay8");
-			client.subscribe(deviceLocation + "Key_Card");
-			client.subscribe(deviceLocation + "Magnetic_door");
-			client.subscribe(deviceLocation + "Motion1");
-			client.subscribe(deviceLocation + "Motion2");
-			client.subscribe(deviceLocation + "Motion3");
-			client.subscribe(deviceLocation + "Motion4");
-			client.subscribe(deviceLocation + "Motion5");
-			client.subscribe(deviceLocation + "RCU_Status");
-			client.subscribe(deviceLocation + "Welcome_mode");
-			client.subscribe(deviceLocation + "Active_mode");
-			client.subscribe(deviceLocation + "Work_mode");
-			client.subscribe(deviceLocation + "Off_mode");
 			helloFunc();
 			setInterval(helloFunc, 5000);
 			
@@ -546,7 +497,7 @@
 			message = new Paho.MQTT.Message("hello");
 			message.destinationName = helloReq;
 			client.send(message);
-			console.log("hello");
+			console.log("db0x30hello");
 		}
 
 		function doFail(e){
@@ -686,6 +637,63 @@
 				gaugeUpdate();
 			}
 		}
+		
+		function onPub(){
+		var topic = document.getElementById("topic").value;
+		var msg = document.getElementById("msg").value;
+		pub(topic, msg)
+	}
+
+	function onSub(){
+		var topic = document.getElementById("topic").value;
+		sub(topic);
+	}
+	function sub(topic){
+		client.subscribe(topic);
+		console.log("subscribe for " + topic);
+	}
+	function pub(topic, payload){
+		
+		message = new Paho.MQTT.Message(payload);
+		message.destinationName = topic;
+		client.send(message);
+		console.log("db0x31:publish topic: " + topic + ", payload: " + payload);
+	}
+
+	/*
+	function updateValue(){
+		document.getElementById("op").innerHTML = 2;
+	}
+	*/
+
+	function setTo(){
+		var paramName = document.getElementById("paramName").value;
+		var topic = deviceLocation + paramName;
+		var payload = document.getElementById("setToValue").value;
+		
+		console.log("set " + topic + " to " + payload);
+		
+		if (confirm("Set " + paramName + " to " + payload)) {
+			pub(topic, payload);
+		} else {
+			return;
+		}
+		
+	}
+
+	function factoryReset() {
+
+		var r = confirm("Setting function to default ?");
+		
+		if(r == false)
+		{
+			return;
+		}
+		
+		/*
+		pub(deviceLocation + "fd", "y");
+		*/
+	}
 		</script>
 	</head>
 	
@@ -913,60 +921,9 @@
 	</div>
 	
 	<div id="cr_div">
-	<p id="getData"><b><a href="https://docs.google.com/spreadsheets/d/1cQuHrtvMbYukbTHewMElMzbX7kmJWryPb6Kx6hpcQYA/edit?usp=sharing">Download</a></b></p>
+	<p id="getData"><b><a href="https://drive.google.com/open?id=1cjy2FDGMQr_fyu9rmVeO1EhPDRSXANozl9S5MWDd6mg">Download</a></b></p>
 	<p id="storage"><b><a href="https://drive.google.com/drive/folders/1K062Ec_Y1j5YlNYP1ZFdsiIq5kzNI2pw?usp=sharing">Storage</a></b></p>
 	<p id="credit">Developer: Chatpeth Kenanan</p></div>
-	<script type="text/javascript">
-	function onPub(){
-		var topic = document.getElementById("topic").value;
-		var msg = document.getElementById("msg").value;
-		pub(topic, msg)
-	}
-
-	function onSub(){
-		var topic = document.getElementById("topic").value;
-		sub(topic);
-	}
-	function sub(topic){
-		client.subscribe(topic);
-		console.log("subscribe for " + topic);
-	}
-	function pub(topic, payload){
-		
-		message = new Paho.MQTT.Message(payload);
-		message.destinationName = topic;
-		client.send(message);
-		console.log("publish topic: " + topic + ", payload: " + payload);
-	}
-
-	/*
-	function updateValue(){
-		document.getElementById("op").innerHTML = 2;
-	}
-	*/
-
-	function setTo(){
-		var paramName = document.getElementById("paramName").value;
-		var topic = deviceLocation + paramName;
-		var payload = document.getElementById("setToValue").value;
-		console.log("set " + topic + " to " + payload);
-		pub(topic, payload)
-	}
-
-	function factoryReset() {
-
-		var r = confirm("Setting function to default ?");
-		
-		if(r == false)
-		{
-			return;
-		}
-		
-		/*
-		pub(deviceLocation + "fd", "y");
-		*/
-	}
-	</script>
 	
 	<div class="setup" id="setting">
 
