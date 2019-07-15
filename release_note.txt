@@ -1,0 +1,5 @@
+Release:07152019
+1. Add JWT Authentications
+2. Debug writning function
+3. Add confirm popup, when calling writing function
+4. Add Login page and Home page

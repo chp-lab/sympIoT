@@ -413,9 +413,9 @@
 			// ##mqtt
 	// Update 07142019 add auth.
 	// Start
-	var deviceLocation = "phuket/rm3/";
-	var helloReq = "req/phuket/rm3";
-	var helloRes = "res/phuket/rm3/";
+	var deviceLocation = "phuket/rm2/";
+	var helloReq = "req/phuket/rm2";
+	var helloRes = "res/phuket/rm2/";
 	var __mqtt_username, __mqtt_password, __mqtt_url, __mqtt_port;
 		
 	let cid = Math.random().toString(36).substring(7);
@@ -944,7 +944,12 @@
 		var topic = deviceLocation + paramName;
 		var payload = document.getElementById("setToValue").value;
 		console.log("set " + topic + " to " + payload);
-		pub(topic, payload)
+		
+		if (confirm("Set " + paramName + " to " + payload)) {
+			pub(topic, payload);
+		} else {
+			return;
+		}
 	}
 
 	function factoryReset() {

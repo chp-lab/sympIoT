@@ -9,7 +9,7 @@
 		<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 		<script src="/js/material-gauge.js"></script>
-		
+		<script src="/jwt-vanilla.js"></script>
 		
 		<script type="text/javascript">
 		// Firebase script
@@ -410,30 +410,72 @@
 		}
 		</script>
 		<script type="text/javascript">
-		var deviceLocation = "phuket/rm16/";
-		var helloReq = "req/phuket/rm16";
-		var helloRes = "res/phuket/rm16/";
+		// ##mqtt
+	// Update 07142019 add auth.
+	// Start
+	var deviceLocation = "phuket/rm16/";
+	var helloReq = "req/phuket/rm16";
+	var helloRes = "res/phuket/rm16/";
+	var __mqtt_username, __mqtt_password, __mqtt_url, __mqtt_port;
 		
-		let cid = Math.random().toString(36).substring(7);
-		console.log("random", cid);
+	let cid = Math.random().toString(36).substring(7);
+	console.log("random", cid);
 		
-		// Create a client instance
-		client = new Paho.MQTT.Client("m10.cloudmqtt.com", 37606, cid);
-		//Example client = new Paho.MQTT.Client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
-
-		// set callback handlers
-		client.onConnectionLost = onConnectionLost;
-		client.onMessageArrived = onMessageArrived;
-		var options = {
-			useSSL: true,
-			userName: "wzvravkf",
-			password: "v1OZdLXaX06l",
-			onSuccess:onConnect,
-			onFailure:doFail
+	// Create a client instance
+	console.log("db0x33");
+		
+	// ----
+	var url = "/index"
+	var xhr = new XMLHttpRequest();
+	var mytoken = localStorage.getItem('token');
+	var tag = "getUserInform: ";
+	var jsonResponse;
+		
+	xhr.open('GET', url, true);
+	  
+	xhr.setRequestHeader("Authorization", mytoken);
+	  
+	xhr.addEventListener('load', function() {
+		var responseObject = this.response;
+		console.log("db0x35");
+			
+		if(responseObject == 'Unauthorized')
+		{
+			alert("Unauthorized!");
+			window.location.assign("/login");
+				
 		}
+		else
+		{
+			jsonResponse = JSON.parse(this.response);
+			__mqtt_username = jsonResponse.mqtt.username;
+			__mqtt_password = jsonResponse.mqtt.password;
+			__mqtt_url = jsonResponse.mqtt.url;
+			__mqtt_port = jsonResponse.mqtt.port;
+			console.log("db0x34");
+			client = new Paho.MQTT.Client(__mqtt_url, __mqtt_port, cid);
+			//Example client = new Paho.MQTT.Client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
 
-		// connect the client
-		client.connect(options);
+			// set callback handlers
+			client.onConnectionLost = onConnectionLost;
+			client.onMessageArrived = onMessageArrived;
+			
+			var options = {
+				useSSL: true,
+				userName: __mqtt_username,
+				password: __mqtt_password,
+				onSuccess:onConnect,
+				onFailure:doFail
+			}
+
+			// connect the client
+			client.connect(options);
+		}
+	});
+
+	xhr.send(null);
+	// ----
+	// End
 
 		// called when the client connects
 		function onConnect() {
@@ -489,55 +531,6 @@
 			client.subscribe(helloRes + "Work_mode");
 			client.subscribe(helloRes + "Off_mode");
 
-			client.subscribe(deviceLocation + "Main_Board_ID");
-			client.subscribe(deviceLocation + "Fanspeed");
-			client.subscribe(deviceLocation + "Temp_setting");
-			client.subscribe(deviceLocation + "Temp_read");
-			client.subscribe(deviceLocation + "Temp_read_point");
-			client.subscribe(deviceLocation + "Humidity_read");
-			client.subscribe(deviceLocation + "Humidity_read_point");
-			
-			client.subscribe(deviceLocation + "Temperature_conpensate");
-			client.subscribe(deviceLocation + "Fanspeed_insert_card");
-			client.subscribe(deviceLocation + "Temperature_insert_card");
-			client.subscribe(deviceLocation + "Fan_speed_remove_card");
-			client.subscribe(deviceLocation + "Temperature_remove_card");
-			client.subscribe(deviceLocation + "Temperature_set_max");
-			client.subscribe(deviceLocation + "Temperature_set_min");
-			client.subscribe(deviceLocation + "Timer_fan_turn_on");
-			client.subscribe(deviceLocation + "Timer_fan_turn_off");
-			client.subscribe(deviceLocation + "Card_delay_removed");
-			client.subscribe(deviceLocation + "Option_out");
-			client.subscribe(deviceLocation + "Show_display");
-			client.subscribe(deviceLocation + "Motion_time_checking");
-			client.subscribe(deviceLocation + "Temperature_limit");
-			client.subscribe(deviceLocation + "Timer_for_entry_door");
-			client.subscribe(deviceLocation + "Humidity_min");
-			client.subscribe(deviceLocation + "Humidity_max");
-			client.subscribe(deviceLocation + "Function_humidity_min");
-			client.subscribe(deviceLocation + "Function_humidity_max");
-			client.subscribe(deviceLocation + "Humidity_compensate");
-			
-			client.subscribe(deviceLocation + "Relay1");
-			client.subscribe(deviceLocation + "Relay2");
-			client.subscribe(deviceLocation + "Relay3");
-			client.subscribe(deviceLocation + "Relay4");
-			client.subscribe(deviceLocation + "Relay5");
-			client.subscribe(deviceLocation + "Relay6");
-			client.subscribe(deviceLocation + "Relay7");
-			client.subscribe(deviceLocation + "Relay8");
-			client.subscribe(deviceLocation + "Key_Card");
-			client.subscribe(deviceLocation + "Magnetic_door");
-			client.subscribe(deviceLocation + "Motion1");
-			client.subscribe(deviceLocation + "Motion2");
-			client.subscribe(deviceLocation + "Motion3");
-			client.subscribe(deviceLocation + "Motion4");
-			client.subscribe(deviceLocation + "Motion5");
-			client.subscribe(deviceLocation + "RCU_Status");
-			client.subscribe(deviceLocation + "Welcome_mode");
-			client.subscribe(deviceLocation + "Active_mode");
-			client.subscribe(deviceLocation + "Work_mode");
-			client.subscribe(deviceLocation + "Off_mode");
 			helloFunc();
 			setInterval(helloFunc, 5000);
 			
@@ -951,7 +944,12 @@
 		var topic = deviceLocation + paramName;
 		var payload = document.getElementById("setToValue").value;
 		console.log("set " + topic + " to " + payload);
-		pub(topic, payload)
+		
+		if (confirm("Set " + paramName + " to " + payload)) {
+			pub(topic, payload);
+		} else {
+			return;
+		}
 	}
 
 	function factoryReset() {
@@ -1213,7 +1211,7 @@
 	</tr>
 </table>
 </div>
-
+<button id="logoutBtn" onclick="logout()">logout</button>
 	</body>
 </html>
   
