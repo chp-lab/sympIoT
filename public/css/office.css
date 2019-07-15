@@ -128,9 +128,10 @@ header.site-header {
 	float: right;
 }
 
-#LogOutBtn {
+#LogOutBtn, #logoutBtn {
 	float: right;
 	margin-right: 20px;
+	margin-bottom: 40px;
 }
 
 #__main {
@@ -387,4 +388,8 @@ header.site-header {
 	background-color: #F7F7FB;
 	height: 20px;
 	padding: 4px;
+}
+
+#rommList {
+	margin-left: 20px;
 }
