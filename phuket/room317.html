@@ -568,7 +568,7 @@
 			var payload = message.payloadString;
 			
 			
-			//console.log("onMessageArrived " + "topic: " + topic + ", payload: " + payload);
+			console.log("onMessageArrived " + "topic: " + topic + ", payload: " + payload);
 			var checkGUI = topic.split("/")[0];
 			var shortTopic = topic.split("/")[3];
 			var tmpTopic = shortTopic.split("n")[0];
@@ -885,82 +885,6 @@
 			document.getElementById("gaugeDataColor2").style.backgroundColor = "#44EFEF";
 		}
 	}
-
-	/*
-	var __fanspeed = database.ref(firebaseKey + '/symp/demo/fanspeed');
-	var __tempset = database.ref(firebaseKey + '/symp/demo/tempset');
-	var __roomtemp = database.ref(firebaseKey + '/symp/demo/roomtemp');
-
-	__fanspeed.on('value', function(snapshot){
-		var __tmpValue = snapshot.val()/4;
-		var gauge_lbl;
-		gauge.value(__tmpValue);
-		//console.log("spin " + __tmpValue);
-		
-		if(snapshot.val() == 0)
-		{
-			gauge_lbl = "Level: Off";
-			
-		}
-		else if(snapshot.val() == 1)
-		{
-			gauge_lbl = "Level: Low";
-			document.getElementById("gaugeDataColor").style.backgroundColor = "#44EFEF";
-		}
-		else if(snapshot.val() == 2)
-		{
-			gauge_lbl = "Level: Medium";
-			document.getElementById("gaugeDataColor").style.backgroundColor = "#F6F641";
-		}
-		else if(snapshot.val() == 3)
-		{
-			gauge_lbl = "Level: High";
-			document.getElementById("gaugeDataColor").style.backgroundColor = "#ED3D3D";
-		}
-		else
-		{
-			gauge_lbl = "Level: Auto";
-			document.getElementById("gaugeDataColor").style.backgroundColor = "#40CD6F";
-		}
-		document.getElementById("gaugeValue").innerHTML = gauge_lbl;
-	});
-	
-	__tempset.on('value', function(snapshot){
-		var __tmpValue = snapshot.val()/35;
-		gauge2.value(__tmpValue);
-		if(snapshot.val() > 24)
-		{
-			document.getElementById("gaugeDataColor2").style.backgroundColor = "#ED3D3D";
-		}
-		else if(snapshot.val()> 23)
-		{
-			document.getElementById("gaugeDataColor2").style.backgroundColor = "#F6F641";
-		}
-		else
-		{
-			document.getElementById("gaugeDataColor2").style.backgroundColor = "#44EFEF";
-		}
-		document.getElementById("gauge2Value").innerHTML = snapshot.val() + " Celcius";
-	});
-	
-	__roomtemp.on('value', function(snapshot){
-		var __tmpValue = snapshot.val()/35;
-		gauge3.value(__tmpValue);
-		if(snapshot.val() > 23)
-		{
-			document.getElementById("gaugeDataColor3").style.backgroundColor = "#ED3D3D";
-		}
-		else if(snapshot.val() > 22)
-		{
-			document.getElementById("gaugeDataColor3").style.backgroundColor = "#F6F641";
-		}
-		else
-		{
-			document.getElementById("gaugeDataColor3").style.backgroundColor = "#44EFEF";
-		}
-		document.getElementById("gauge3Value").innerHTML = snapshot.val() + " Celcius";
-	});
-	*/
 	
 	
 	

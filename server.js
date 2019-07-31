@@ -17,6 +17,10 @@ const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
 	console.log("sub: " + payload.sub);
 	
 	// Implement Multiple Local User Authentication Strategies in Passport.js
+	/*
+	Use payload.sub as username to look at databases
+	# SELECT * FROM Machines WHERE username=payload.sub;
+	*/
    if(payload.sub === "super")
    {
 	   UNAME = "Supervisor";
@@ -48,6 +52,19 @@ const loginMiddleware = (req, res, next) => {
 	
 	console.log(req.body);
 	
+	// Use req.body.username and req.body.password to look at databases
+	/*
+	var checkPassword = SELECT password FROM UserInformations WHERE username=req.body,username;
+	if(req.body.password == checkPassword)
+	{
+		// login pass
+		next();
+	}
+	else
+	{
+		// loginFailed;
+	}
+	*/
 	if(req.body.username === "super" && req.body.password === "qwer!@34")
 	{
 		console.log("supervisor login complete");

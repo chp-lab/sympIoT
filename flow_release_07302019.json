@@ -1,0 +1,2598 @@
+[
+    {
+        "id": "b484aaa0.a82988",
+        "type": "tab",
+        "label": "myService-read",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "54d87666.9a8558",
+        "type": "tab",
+        "label": "myService-write",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "140103de.9c6abc",
+        "type": "modbus-client",
+        "z": "",
+        "name": "f1",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "TPC-RTU-BUFFERED",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "{msg.payload}",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectTimeout": "2000"
+    },
+    {
+        "id": "a88e49f0.408718",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "m10.cloudmqtt.com",
+        "port": "17606",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "30",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "392f2cc7.36ccf4",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fe490182.5b2df",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "392f2cc7.36ccf4",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "61feb2e4.92278c",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "9da5cbc1.9867f8",
+        "type": "modbus-client",
+        "z": "",
+        "name": "f2",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectTimeout": "2000"
+    },
+    {
+        "id": "ae6b3ed9.17a5b",
+        "type": "modbus-client",
+        "z": "",
+        "name": "f3",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectTimeout": "2000"
+    },
+    {
+        "id": "7569d0dc.0586",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "f1",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "140103de.9c6abc",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "82d0c2be.19249",
+                "3d31c55a.232e2a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "57066c24.1c0294",
+        "type": "mqtt in",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "topic": "req/phuket/#",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "a88e49f0.408718",
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "7909766e.7803f8",
+                "e6e9f447.bff198"
+            ]
+        ]
+    },
+    {
+        "id": "7909766e.7803f8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "ID_Map",
+        "func": "var mySplit = msg.topic.split(\"/\");\nvar roomStr = mySplit[2];\n// Storing room number for mqtt pub\nflow.set(\"roomTopic\", roomStr);\n\nroomStr = roomStr.replace(\"rm\", \"\");\nvar roomNum = parseInt(roomStr);\nvar mid;\nvar floor;\n\nswitch(roomNum)\n{\n    case 1:\n        // 315\n        mid = 3;\n        floor = 1;\n        break;\n    case 2:\n        // 316\n        mid = 5;\n        floor = 1;\n        break;\n    case 3:\n        // 317\n        mid = 1;\n        floor = 1;\n        break;\n    case 4:\n        // 318\n        mid = 4;\n        floor = 1;\n        break;\n    case 5:\n        // 321\n        mid = 2;\n        floor = 2;\n        break;\n    default:\n        // 322 - 338\n        if(roomNum < 13)\n        {\n            // 2nd floor\n            floor = 2;\n        }\n        else\n        {\n            // 3rd floor\n            floor = 3;\n        }\n        mid = roomNum;\n}\nmsg.payload = mid;\n// Storing mid for mbs_status\nflow.set(\"mid\", mid);\nflow.set(\"floor\", floor);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "9b46e20a.248e1"
+            ]
+        ]
+    },
+    {
+        "id": "926069bb.7f4bb8",
+        "type": "comment",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "info": "- the mqtt pub node must know the out put topic\n- assume that mqtt topic change is lowwer \nthan 1 topic per sec.\n",
+        "x": 480,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "51f83ed.96170c",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Fanspeed",
+        "func": "msg.payload = msg.payload[1];\nmsg.topic = msg.topic +  \"Fanspeed\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 140,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "6382edc3.9f2e74",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Main_Board_ID",
+        "func": "msg.payload = msg.payload[0];\nmsg.topic = msg.topic +  \"Main_Board_ID\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 100,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "c2901d48.57f04",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temp_setting",
+        "func": "msg.payload = msg.payload[2];\nmsg.topic = msg.topic +  \"Temp_setting\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 180,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "724237a7.2eece8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temp_read",
+        "func": "msg.payload = msg.payload[3];\nmsg.topic = msg.topic +  \"Temp_read\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 220,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "37bc850f.a6329a",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temp_read_point",
+        "func": "msg.payload = msg.payload[4];\nmsg.topic = msg.topic +  \"Temp_read_point\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "63c6764d.0e05a8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Humidity_read",
+        "func": "msg.payload = msg.payload[5];\nmsg.topic = msg.topic +  \"Humidity_read\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 300,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "a4b61fe1.f4d6e",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Humidity_read_point",
+        "func": "msg.payload = msg.payload[6];\nmsg.topic = msg.topic +  \"Humidity_read_point\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 340,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "f713a660.d04508",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temperature_conpensate",
+        "func": "var tmpValue = msg.payload[9];\ntmpValue = tmpValue - 5;\nmsg.payload = tmpValue;\nmsg.topic = msg.topic +  \"Temperature_conpensate\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 380,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "a59615ec.c174e8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Fanspeed_insert_card",
+        "func": "msg.payload = msg.payload[10];\nmsg.topic = msg.topic +  \"Fanspeed_insert_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 420,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "71ca4847.2ddaf8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temperature_insert_card",
+        "func": "msg.payload = msg.payload[11];\nmsg.topic = msg.topic +  \"Temperature_insert_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 460,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "1f920f98.7cde",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Fan_speed_remove_card",
+        "func": "msg.payload = msg.payload[12];\nmsg.topic = msg.topic +  \"Fan_speed_remove_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 500,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "e6e62511.95c5a8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temperature_remove_card",
+        "func": "msg.payload = msg.payload[13];\nmsg.topic = msg.topic +  \"Temperature_remove_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 720,
+        "y": 540,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "f6c7be1f.71087",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temperature_set_max",
+        "func": "msg.payload = msg.payload[14];\nmsg.topic = msg.topic +  \"Temperature_set_max\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 580,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "f4ddd1ca.03a8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temperature_set_min",
+        "func": "msg.payload = msg.payload[15];\nmsg.topic = msg.topic +  \"Temperature_set_min\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 620,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "c6670789.346bc8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Timer_fan_turn_on",
+        "func": "msg.payload = msg.payload[16];\nmsg.topic = msg.topic +  \"Timer_fan_turn_on\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 660,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "a1344f27.7bcbc",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Timer_fan_turn_off",
+        "func": "msg.payload = msg.payload[17];\nmsg.topic = msg.topic +  \"Timer_fan_turn_off\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 700,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "7281902c.33547",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Card_delay_removed",
+        "func": "msg.payload = msg.payload[18];\nmsg.topic = msg.topic +  \"Card_delay_removed\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 740,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "6bbd1d70.a59a54",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Option_out",
+        "func": "msg.payload = msg.payload[19];\nmsg.topic = msg.topic +  \"Option_out\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 780,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "9d651509.15c488",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Show_display",
+        "func": "msg.payload = msg.payload[20];\nmsg.topic = msg.topic +  \"Show_display\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 820,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "f15b220f.15475",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Motion_time_checking",
+        "func": "msg.payload = msg.payload[21];\nmsg.topic = msg.topic +  \"Motion_time_checking\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 860,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "b773a9b6.e3dd78",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Temperature_limit",
+        "func": "msg.payload = msg.payload[22];\nmsg.topic = msg.topic +  \"Temperature_limit\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 900,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "48bec41d.e41a6c",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Timer_for_entry_door",
+        "func": "msg.payload = msg.payload[23];\nmsg.topic = msg.topic +  \"Timer_for_entry_door\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 940,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "74151918.3c0178",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Humidity_min",
+        "func": "msg.payload = msg.payload[24];\nmsg.topic = msg.topic +  \"Humidity_min\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 980,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "a925972b.738338",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Humidity_max",
+        "func": "msg.payload = msg.payload[25];\nmsg.topic = msg.topic +  \"Humidity_max\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1020,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "aa9aaeef.aa021",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Function_humidity_min",
+        "func": "msg.payload = msg.payload[26];\nmsg.topic = msg.topic +  \"Function_humidity_min\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 1060,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "dff13bb8.bc15d8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Function_humidity_max",
+        "func": "msg.payload = msg.payload[27];\nmsg.topic = msg.topic +  \"Function_humidity_max\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 1100,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "6c63f032.a45bd",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Humidity_compensate",
+        "func": "msg.payload = msg.payload[28] - 20;\nmsg.topic = msg.topic +  \"Humidity_compensate\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 1140,
+        "wires": [
+            [
+                "b07ea608.27ea08"
+            ]
+        ]
+    },
+    {
+        "id": "b07ea608.27ea08",
+        "type": "mqtt out",
+        "z": "b484aaa0.a82988",
+        "name": "res",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "broker": "a88e49f0.408718",
+        "x": 950,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "82d0c2be.19249",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Location",
+        "func": "var roomTopic = flow.get(\"roomTopic\");\nmsg.topic = `res/phuket/${roomTopic}/`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 180,
+        "wires": [
+            [
+                "6382edc3.9f2e74",
+                "51f83ed.96170c",
+                "c2901d48.57f04",
+                "724237a7.2eece8",
+                "37bc850f.a6329a",
+                "63c6764d.0e05a8",
+                "a4b61fe1.f4d6e",
+                "f713a660.d04508",
+                "a59615ec.c174e8",
+                "71ca4847.2ddaf8",
+                "1f920f98.7cde",
+                "e6e62511.95c5a8",
+                "f6c7be1f.71087",
+                "f4ddd1ca.03a8",
+                "c6670789.346bc8",
+                "a1344f27.7bcbc",
+                "7281902c.33547",
+                "6bbd1d70.a59a54",
+                "9d651509.15c488",
+                "f15b220f.15475",
+                "b773a9b6.e3dd78",
+                "48bec41d.e41a6c",
+                "74151918.3c0178",
+                "a925972b.738338",
+                "aa9aaeef.aa021",
+                "dff13bb8.bc15d8",
+                "6c63f032.a45bd",
+                "405331f0.82a99"
+            ]
+        ]
+    },
+    {
+        "id": "405331f0.82a99",
+        "type": "delay",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "2",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 480,
+        "y": 260,
+        "wires": [
+            [
+                "a658e31e.7b10a"
+            ]
+        ]
+    },
+    {
+        "id": "a658e31e.7b10a",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "mbs_status",
+        "func": "var mid = flow.get(\"mid\");\nmsg.payload = { value: msg.payload, 'fc': 1, 'unitid': mid, 'address': 0 , 'quantity': 20 };\nmsg.floor = flow.get(\"floor\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "84d33f12.778bd"
+            ]
+        ]
+    },
+    {
+        "id": "9b46e20a.248e1",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "mbs_setting",
+        "func": "var mid = flow.get(\"mid\");\nmsg.payload = { value: msg.payload, 'fc': 3, 'unitid': mid, 'address': 0 , 'quantity': 29 };\nmsg.floor = flow.get(\"floor\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "d0379ecf.c6ffa"
+            ]
+        ]
+    },
+    {
+        "id": "ae181c9b.dea06",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Location",
+        "func": "var roomTopic = flow.get(\"roomTopic\");\nmsg.topic = `res/phuket/${roomTopic}/`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 460,
+        "y": 1660,
+        "wires": [
+            [
+                "41059792.abdfc8",
+                "1e404cc2.b68303",
+                "7304aca6.63e5b4",
+                "d01da17a.e2d1a",
+                "347f732f.97df1c",
+                "90300ce9.1528f",
+                "d28adeed.b95b7",
+                "50d96c25.766524",
+                "1a144f31.756531",
+                "cc30710e.2ebe8",
+                "1c6e9795.791678",
+                "2f45c5ff.0750ca",
+                "efb107b9.44e788",
+                "eea2c45c.be29e8",
+                "1ee02440.c8eeac",
+                "bf94cc9f.ed14e",
+                "152c1f69.9c2291",
+                "a27dd42.348ff28",
+                "9947610d.0011e",
+                "b95d1854.c27df8",
+                "3faf85a2.2542da"
+            ]
+        ]
+    },
+    {
+        "id": "41059792.abdfc8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay1",
+        "func": "msg.payload = msg.payload[0];\nmsg.topic = msg.topic +  \"Relay1\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1260,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "3faf85a2.2542da",
+        "type": "debug",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "active": false,
+        "console": false,
+        "complete": "false",
+        "x": 670,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "1e404cc2.b68303",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay2",
+        "func": "msg.payload = msg.payload[1];\nmsg.topic = msg.topic +  \"Relay2\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1300,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "7304aca6.63e5b4",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay3",
+        "func": "msg.payload = msg.payload[2];\nmsg.topic = msg.topic +  \"Relay3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1340,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "d01da17a.e2d1a",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay4",
+        "func": "msg.payload = msg.payload[3];\nmsg.topic = msg.topic +  \"Relay4\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1380,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "347f732f.97df1c",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay5",
+        "func": "msg.payload = msg.payload[4];\nmsg.topic = msg.topic +  \"Relay5\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1420,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "90300ce9.1528f",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay6",
+        "func": "msg.payload = msg.payload[5];\nmsg.topic = msg.topic +  \"Relay6\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1460,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "d28adeed.b95b7",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay7",
+        "func": "msg.payload = msg.payload[6];\nmsg.topic = msg.topic +  \"Relay7\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1500,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "50d96c25.766524",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Relay8",
+        "func": "msg.payload = msg.payload[7];\nmsg.topic = msg.topic +  \"Relay8\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1540,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "1a144f31.756531",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Key_Card",
+        "func": "msg.payload = msg.payload[8];\nmsg.topic = msg.topic +  \"Key_Card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1580,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "cc30710e.2ebe8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Magnetic_door",
+        "func": "msg.payload = msg.payload[9];\nmsg.topic = msg.topic +  \"Magnetic_door\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1620,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "1c6e9795.791678",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Motion1",
+        "func": "msg.payload = msg.payload[10];\nmsg.topic = msg.topic +  \"Motion1\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1660,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "2f45c5ff.0750ca",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Motion2",
+        "func": "msg.payload = msg.payload[11];\nmsg.topic = msg.topic +  \"Motion2\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1700,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "efb107b9.44e788",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Motion3",
+        "func": "msg.payload = msg.payload[12];\nmsg.topic = msg.topic +  \"Motion3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1740,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "eea2c45c.be29e8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Motion4",
+        "func": "msg.payload = msg.payload[13];\nmsg.topic = msg.topic +  \"Motion4\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1780,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "1ee02440.c8eeac",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Motion5",
+        "func": "msg.payload = msg.payload[14];\nmsg.topic = msg.topic +  \"Motion5\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 1820,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "bf94cc9f.ed14e",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "RCU_Status",
+        "func": "msg.payload = msg.payload[15];\nmsg.topic = msg.topic +  \"RCU_Status\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 1860,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "152c1f69.9c2291",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Welcome_mode",
+        "func": "msg.payload = msg.payload[16];\nmsg.topic = msg.topic +  \"Welcome_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1900,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "a27dd42.348ff28",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Active_mode",
+        "func": "msg.payload = msg.payload[17];\nmsg.topic = msg.topic +  \"Active_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 1940,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "9947610d.0011e",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Work_mode",
+        "func": "msg.payload = msg.payload[18];\nmsg.topic = msg.topic +  \"Work_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 1980,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "b95d1854.c27df8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "Off_mode",
+        "func": "msg.payload = msg.payload[19];\nmsg.topic = msg.topic +  \"Off_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 2020,
+        "wires": [
+            [
+                "fe7515bc.e08468"
+            ]
+        ]
+    },
+    {
+        "id": "fe7515bc.e08468",
+        "type": "mqtt out",
+        "z": "b484aaa0.a82988",
+        "name": "res",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "broker": "a88e49f0.408718",
+        "x": 850,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "b629ab68.360da8",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "f1",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "140103de.9c6abc",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "ae181c9b.dea06"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f1450050.48cbc",
+        "type": "mqtt in",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "topic": "phuket/+/req/monit",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "a88e49f0.408718",
+        "x": 110,
+        "y": 2200,
+        "wires": [
+            [
+                "b0a9b8c5.d06428",
+                "e3bed89e.858b58"
+            ]
+        ]
+    },
+    {
+        "id": "b63056fc.038178",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "R_monit",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "140103de.9c6abc",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 540,
+        "y": 2200,
+        "wires": [
+            [
+                "2c033300.4951fe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b0a9b8c5.d06428",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "ID_Map",
+        "func": "var mySplit = msg.topic.split(\"/\");\nvar roomStr = mySplit[1];\nconsole.log(roomStr);\nflow.set(\"myTempTopic\", roomStr);\n// Storing room number for mqtt pub\nflow.set(\"resRoom\", roomStr);\nroomStr = roomStr.replace(\"rm\", \"\");\n\nvar roomNum = parseInt(roomStr);\nvar mid;\nvar floor;\n\nswitch(roomNum)\n{\n    case 1:\n        // 315\n        mid = 3;\n        floor = 1;\n        break;\n    case 2:\n        // 316\n        mid = 5;\n        floor = 1;\n        break;\n    case 3:\n        // 317\n        mid = 1;\n        floor = 1;\n        break;\n    case 4:\n        // 318\n        mid = 4;\n        floor = 1;\n        break;\n    case 5:\n        // 321\n        mid = 2;\n        floor = 2;\n        break;\n    default:\n        // 322 - 338\n        if(roomNum < 13)\n        {\n            // 2nd floor\n            floor = 2;\n        }\n        else\n        {\n            // 3rd floor\n            floor = 3;\n        }\n        mid = roomNum;\n}\n\nmsg.payload = mid;\nflow.set(\"tmpFloor\", floor);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 240,
+        "y": 2140,
+        "wires": [
+            [
+                "b29bb2e7.9715c"
+            ]
+        ]
+    },
+    {
+        "id": "2c033300.4951fe",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "set",
+        "func": "var temp = msg.payload[0];\nvar humidity = msg.payload[2];\nflow.set(\"temp\", temp);\nflow.set(\"humidity\", humidity);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 2240,
+        "wires": [
+            [
+                "feb986df.fcb7e8"
+            ]
+        ]
+    },
+    {
+        "id": "feb986df.fcb7e8",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "get",
+        "func": "var temp = flow.get(\"temp\");\nvar humidity = flow.get(\"humidity\");\nvar resRoom = flow.get(\"resRoom\");\nvar uts = Math.floor(Date.now()).toString();\nvar str = temp + \",\" + humidity + \",\" + resRoom + \",\" + uts;\nmsg.payload = str;\nmsg.topic = `phuket/${resRoom}/res/monit`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 2200,
+        "wires": [
+            [
+                "860077fd.4fb198",
+                "8562423f.56914"
+            ]
+        ]
+    },
+    {
+        "id": "860077fd.4fb198",
+        "type": "debug",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "active": true,
+        "console": false,
+        "complete": "payload",
+        "x": 890,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "b29bb2e7.9715c",
+        "type": "function",
+        "z": "b484aaa0.a82988",
+        "name": "mbs_setting",
+        "func": "var mid = flow.get(\"mid\");\nmsg.payload = { value: msg.payload, 'fc': 3, 'unitid': mid, 'address': 3 , 'quantity': 3 };\nmsg.floor = flow.get(\"tmpFloor\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 2200,
+        "wires": [
+            [
+                "a5227f0b.593c"
+            ]
+        ]
+    },
+    {
+        "id": "8562423f.56914",
+        "type": "mqtt out",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "broker": "a88e49f0.408718",
+        "x": 870,
+        "y": 2240,
+        "wires": []
+    },
+    {
+        "id": "d0379ecf.c6ffa",
+        "type": "switch",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "property": "floor",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "7569d0dc.0586"
+            ],
+            [
+                "2e014fcb.07fb"
+            ],
+            [
+                "e8ea4357.83203"
+            ]
+        ]
+    },
+    {
+        "id": "2e014fcb.07fb",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "f2",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "9da5cbc1.9867f8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "82d0c2be.19249",
+                "3d31c55a.232e2a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e8ea4357.83203",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "f3",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "ae6b3ed9.17a5b",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "82d0c2be.19249",
+                "3d31c55a.232e2a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "84d33f12.778bd",
+        "type": "switch",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "property": "floor",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 310,
+        "y": 380,
+        "wires": [
+            [
+                "b629ab68.360da8"
+            ],
+            [
+                "58dc3d96.bbc5e4"
+            ],
+            [
+                "95ecfe92.8060d"
+            ]
+        ]
+    },
+    {
+        "id": "58dc3d96.bbc5e4",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "f2",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "9da5cbc1.9867f8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 450,
+        "y": 460,
+        "wires": [
+            [
+                "ae181c9b.dea06"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "95ecfe92.8060d",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "f3",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "ae6b3ed9.17a5b",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 450,
+        "y": 520,
+        "wires": [
+            [
+                "ae181c9b.dea06"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3d31c55a.232e2a",
+        "type": "debug",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 470,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a5227f0b.593c",
+        "type": "switch",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "property": "floor",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 350,
+        "y": 2260,
+        "wires": [
+            [
+                "b63056fc.038178"
+            ],
+            [
+                "f7090edf.480c6"
+            ],
+            [
+                "384e7bbf.22b2a4"
+            ]
+        ]
+    },
+    {
+        "id": "f7090edf.480c6",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "R_monit",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "9da5cbc1.9867f8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 540,
+        "y": 2260,
+        "wires": [
+            [
+                "2c033300.4951fe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "384e7bbf.22b2a4",
+        "type": "modbus-flex-getter",
+        "z": "b484aaa0.a82988",
+        "name": "R_monit",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "server": "ae6b3ed9.17a5b",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 540,
+        "y": 2320,
+        "wires": [
+            [
+                "2c033300.4951fe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4b06095c.97df38",
+        "type": "comment",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "info": "- Please note that it should serialize interrupt from log server",
+        "x": 80,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "e6e9f447.bff198",
+        "type": "debug",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 210,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e3bed89e.858b58",
+        "type": "debug",
+        "z": "b484aaa0.a82988",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 150,
+        "y": 2260,
+        "wires": []
+    },
+    {
+        "id": "74be4122.d373",
+        "type": "modbus-flex-write",
+        "z": "54d87666.9a8558",
+        "name": "f1",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "server": "140103de.9c6abc",
+        "x": 870,
+        "y": 500,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "76013c1d.f97ab4",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "createQuery",
+        "func": "var addr = msg.addr;\nvar reg = msg.payload;\nvar mid = msg.mid;\nmsg.payload = { value: reg, 'fc': 6, 'unitid': mid, 'address': addr , 'quantity': 1 };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 480,
+        "wires": [
+            [
+                "e6e54b82.1a9f08",
+                "aaa00b89.d4f4a8"
+            ]
+        ]
+    },
+    {
+        "id": "82c43f15.2fac5",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Fanspeed",
+        "topic": "phuket/+/Fanspeed",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "a88e49f0.408718",
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "7172fef3.87376"
+            ]
+        ]
+    },
+    {
+        "id": "d51c6ffa.4ae7d",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Temp_setting",
+        "topic": "phuket/+/Temp_setting",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "a88e49f0.408718",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "3cc0877a.8f9598"
+            ]
+        ]
+    },
+    {
+        "id": "456a2f7d.178f7",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Temperature_conpensate",
+        "topic": "phuket/+/Temperature_conpensate",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "ae7cd2d2.c7527"
+            ]
+        ]
+    },
+    {
+        "id": "bdc76838.30a5e8",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Fanspeed_insert_card",
+        "topic": "phuket/+/Fanspeed_insert_card",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 520,
+        "wires": [
+            [
+                "23beb47b.11d75c"
+            ]
+        ]
+    },
+    {
+        "id": "961590dd.db424",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Temperature_insert_card",
+        "topic": "phuket/+/Temperature_insert_card",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "bbaf6bc8.bd2e48"
+            ]
+        ]
+    },
+    {
+        "id": "db06cbe1.cd46b8",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Fan_speed_remove_card",
+        "topic": "phuket/+/Fan_speed_remove_card",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "73715a74.498ef4"
+            ]
+        ]
+    },
+    {
+        "id": "d262493f.100728",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Temperature_remove_card",
+        "topic": "phuket/+/Temperature_remove_card",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "e4b2537a.77657"
+            ]
+        ]
+    },
+    {
+        "id": "b9314b60.f26928",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Temperature_set_max",
+        "topic": "phuket/+/Temperature_set_max",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 680,
+        "wires": [
+            [
+                "e67e828d.ef004"
+            ]
+        ]
+    },
+    {
+        "id": "c0601156.a5ed",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Temperature_set_min",
+        "topic": "phuket/+/Temperature_set_min",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 720,
+        "wires": [
+            [
+                "8aea85ea.3c3108"
+            ]
+        ]
+    },
+    {
+        "id": "2cb5e4ac.9c4e1c",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Timer_fan_turn_on",
+        "topic": "phuket/+/Timer_fan_turn_on",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 130,
+        "y": 760,
+        "wires": [
+            [
+                "96e4d3f7.0c778"
+            ]
+        ]
+    },
+    {
+        "id": "a51cfc93.ede11",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Timer_fan_turn_off",
+        "topic": "phuket/+/Timer_fan_turn_off",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 130,
+        "y": 800,
+        "wires": [
+            [
+                "c61d4db2.ff93c"
+            ]
+        ]
+    },
+    {
+        "id": "11228f32.068551",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Card_delay_removed",
+        "topic": "phuket/+/Card_delay_removed",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 840,
+        "wires": [
+            [
+                "e6d1b166.a982c"
+            ]
+        ]
+    },
+    {
+        "id": "dd5d3ad2.e8c998",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Option_out",
+        "topic": "phuket/+/Option_out",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 100,
+        "y": 880,
+        "wires": [
+            [
+                "b026ff7f.aecba"
+            ]
+        ]
+    },
+    {
+        "id": "b6de4ef5.8c5be",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Show_display",
+        "topic": "phuket/+/Show_display",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 110,
+        "y": 920,
+        "wires": [
+            [
+                "68c80f5d.8a90b"
+            ]
+        ]
+    },
+    {
+        "id": "29cab485.6a1fdc",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Motion_time_checking",
+        "topic": "phuket/+/Motion_time_checking",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 960,
+        "wires": [
+            [
+                "7add111f.40bd4"
+            ]
+        ]
+    },
+    {
+        "id": "3827b74f.2dddb8",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Temperature_limit",
+        "topic": "phuket/+/Temperature_limit",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 130,
+        "y": 1000,
+        "wires": [
+            [
+                "3bd0368f.a71c8a"
+            ]
+        ]
+    },
+    {
+        "id": "4b4b46b6.014fb8",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Timer_for_entry_door",
+        "topic": "phuket/+/Timer_for_entry_door",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 1040,
+        "wires": [
+            [
+                "e1301a2a.240238"
+            ]
+        ]
+    },
+    {
+        "id": "582ff857.2e3018",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Humidity_min",
+        "topic": "phuket/+/Humidity_min",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 110,
+        "y": 1080,
+        "wires": [
+            [
+                "b93d841.b4a9378"
+            ]
+        ]
+    },
+    {
+        "id": "182e426.cb23dbe",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Humidity_max",
+        "topic": "phuket/+/Humidity_max",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 110,
+        "y": 1120,
+        "wires": [
+            [
+                "55d08429.805a4c"
+            ]
+        ]
+    },
+    {
+        "id": "4acb6627.81e198",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Function_humidity_min",
+        "topic": "phuket/+/Function_humidity_min",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 1160,
+        "wires": [
+            [
+                "14c3903f.e4fac"
+            ]
+        ]
+    },
+    {
+        "id": "af20a3c9.22e85",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Function_humidity_max",
+        "topic": "phuket/+/Function_humidity_max",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 1200,
+        "wires": [
+            [
+                "b692f8f3.8c9728"
+            ]
+        ]
+    },
+    {
+        "id": "3fa47db5.5ff082",
+        "type": "mqtt in",
+        "z": "54d87666.9a8558",
+        "name": "Humidity_compensate",
+        "topic": "phuket/+/Humidity_compensate",
+        "qos": "0",
+        "broker": "a88e49f0.408718",
+        "x": 140,
+        "y": 1240,
+        "wires": [
+            [
+                "89aad492.4cecf8"
+            ]
+        ]
+    },
+    {
+        "id": "7172fef3.87376",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr1",
+        "func": "msg.addr = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "e6e54b82.1a9f08",
+        "type": "debug",
+        "z": "54d87666.9a8558",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 710,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e633a539.c09fd8",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "ID_Map",
+        "func": "var mySplit = msg.topic.split(\"/\");\nvar roomStr = mySplit[1];\nroomStr = roomStr.replace(\"rm\", \"\");\n\nvar roomNum = parseInt(roomStr);\nvar mid;\nvar floor;\n\nswitch(roomNum)\n{\n    case 1:\n        // 315\n        mid = 3;\n        floor = 1;\n        break;\n    case 2:\n        // 316\n        mid = 5;\n        floor = 1;\n        break;\n    case 3:\n        // 317\n        mid = 1;\n        floor = 1;\n        break;\n    case 4:\n        // 318\n        mid = 4;\n        floor = 1;\n        break;\n    case 5:\n        // 321\n        mid = 2;\n        floor = 2;\n        break;\n    default:\n        // 322 - 338\n        if(roomNum < 13)\n        {\n            // 2nd floor\n            floor = 2;\n        }\n        else\n        {\n            // 3rd floor\n            floor = 3;\n        }\n        mid = roomNum;\n}\n\nmsg.mid = mid;\nmsg.floor = floor;\nmsg.payload = parseInt(msg.payload);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 540,
+        "wires": [
+            [
+                "76013c1d.f97ab4"
+            ]
+        ]
+    },
+    {
+        "id": "3cc0877a.8f9598",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr2",
+        "func": "msg.addr = 2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "26e37929.066a96",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "positive",
+        "func": "var inputNum = parseInt(msg.payload);\ninputNum = inputNum + 5;\nmsg.payload = inputNum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 440,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "ae7cd2d2.c7527",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr9",
+        "func": "msg.addr = 9;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 480,
+        "wires": [
+            [
+                "26e37929.066a96"
+            ]
+        ]
+    },
+    {
+        "id": "23beb47b.11d75c",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr10",
+        "func": "msg.addr = 10;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 520,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "bbaf6bc8.bd2e48",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr11",
+        "func": "msg.addr = 11;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 560,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "73715a74.498ef4",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr12",
+        "func": "msg.addr = 12;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 600,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "e4b2537a.77657",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr13",
+        "func": "msg.addr = 13;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 640,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "3c7f520c.9f1e6e",
+        "type": "comment",
+        "z": "54d87666.9a8558",
+        "name": "addr8 reserved",
+        "info": "",
+        "x": 120,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "543dd7f2.fc9dd8",
+        "type": "comment",
+        "z": "54d87666.9a8558",
+        "name": "addr7 reserved",
+        "info": "",
+        "x": 120,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "e67e828d.ef004",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr14",
+        "func": "msg.addr = 14;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 680,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "8aea85ea.3c3108",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr15",
+        "func": "msg.addr = 15;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 720,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "96e4d3f7.0c778",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr16",
+        "func": "msg.addr = 16;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 760,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "c61d4db2.ff93c",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr17",
+        "func": "msg.addr = 17;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 800,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "e6d1b166.a982c",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr18",
+        "func": "msg.addr = 18;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 840,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "b026ff7f.aecba",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr19",
+        "func": "msg.addr = 19;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 880,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "68c80f5d.8a90b",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr20",
+        "func": "msg.addr = 20;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 920,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "7add111f.40bd4",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr21",
+        "func": "msg.addr = 21;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 960,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "3bd0368f.a71c8a",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr22",
+        "func": "msg.addr = 22;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1000,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "e1301a2a.240238",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr23",
+        "func": "msg.addr = 23;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1040,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "b93d841.b4a9378",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr24",
+        "func": "msg.addr = 24;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1080,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "55d08429.805a4c",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr25",
+        "func": "msg.addr = 25;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1120,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "14c3903f.e4fac",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr26",
+        "func": "msg.addr = 26;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1160,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "b692f8f3.8c9728",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr27",
+        "func": "msg.addr = 27;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1200,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "89aad492.4cecf8",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "addr28",
+        "func": "msg.addr = 28;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1240,
+        "wires": [
+            [
+                "d3ef9bd6.2cf018"
+            ]
+        ]
+    },
+    {
+        "id": "d3ef9bd6.2cf018",
+        "type": "function",
+        "z": "54d87666.9a8558",
+        "name": "positive",
+        "func": "var inputNum = parseInt(msg.payload);\ninputNum = inputNum + 20;\nmsg.payload = inputNum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 360,
+        "y": 1280,
+        "wires": [
+            [
+                "e633a539.c09fd8"
+            ]
+        ]
+    },
+    {
+        "id": "1d47ac9.299ea53",
+        "type": "comment",
+        "z": "54d87666.9a8558",
+        "name": "addr3 R_only",
+        "info": "",
+        "x": 110,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e8eed86d.324368",
+        "type": "comment",
+        "z": "54d87666.9a8558",
+        "name": "addr4 R_only",
+        "info": "",
+        "x": 110,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "cb1ccb17.ad3678",
+        "type": "comment",
+        "z": "54d87666.9a8558",
+        "name": "addr5 R_only",
+        "info": "",
+        "x": 110,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8a49cbfc.9e77d8",
+        "type": "comment",
+        "z": "54d87666.9a8558",
+        "name": "addr6 R_only",
+        "info": "",
+        "x": 110,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "aaa00b89.d4f4a8",
+        "type": "switch",
+        "z": "54d87666.9a8558",
+        "name": "",
+        "property": "floor",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 730,
+        "y": 540,
+        "wires": [
+            [
+                "74be4122.d373"
+            ],
+            [
+                "b3fd6305.dd18"
+            ],
+            [
+                "da03c218.1a6f4"
+            ]
+        ]
+    },
+    {
+        "id": "b3fd6305.dd18",
+        "type": "modbus-flex-write",
+        "z": "54d87666.9a8558",
+        "name": "f2",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "server": "9da5cbc1.9867f8",
+        "x": 870,
+        "y": 540,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "da03c218.1a6f4",
+        "type": "modbus-flex-write",
+        "z": "54d87666.9a8558",
+        "name": "f3",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "server": "ae6b3ed9.17a5b",
+        "x": 870,
+        "y": 580,
+        "wires": [
+            [],
+            []
+        ]
+    }
+]

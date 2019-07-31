@@ -1,0 +1,2217 @@
+[
+    {
+        "id": "69b15a59.9e4d74",
+        "type": "modbus-getter",
+        "z": "f1d8b02f.e8755",
+        "name": "all",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "29",
+        "server": "50fbd3e9.8c296c",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "add9d4b0.b160d8",
+                "982fc308.8c096"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "add9d4b0.b160d8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Location",
+        "func": "msg.topic = \"res/phuket/rm3/\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "bc0a9c6f.ff7f5",
+                "260ec9c5.a63b96",
+                "352e0b5f.1ef9a4",
+                "a28d2e57.b16ec",
+                "187bd920.98f3f7",
+                "8fe8566a.ae1058",
+                "9478e208.41d45",
+                "8d7bdf2e.49517",
+                "2df5e86a.bfbdd8",
+                "ab02755.71d0888",
+                "781426bf.2be018",
+                "ad542fc0.32da",
+                "326429cf.163056",
+                "fd52e8c4.c7ef58",
+                "77a77b71.ac1434",
+                "7720f1fc.332d6",
+                "9e98db3c.a00af8",
+                "a737fc9d.780d4",
+                "152ca059.f2096",
+                "186e1b55.d1cf15",
+                "f77591f4.76e32",
+                "f8139c2.260866",
+                "10898ee8.a2d881",
+                "38441e24.9c0d22",
+                "dc4ef5e9.2a9388",
+                "a5e3e084.2d0f1",
+                "37eb8f6.a3a407",
+                "5f498fc4.97db5"
+            ]
+        ]
+    },
+    {
+        "id": "260ec9c5.a63b96",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Fanspeed",
+        "func": "msg.payload = msg.payload[1];\nmsg.topic = msg.topic +  \"Fanspeed\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 540,
+        "y": 160,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "bc0a9c6f.ff7f5",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Main_Board_ID",
+        "func": "msg.payload = msg.payload[0];\nmsg.topic = msg.topic +  \"Main_Board_ID\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 120,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "352e0b5f.1ef9a4",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temp_setting",
+        "func": "msg.payload = msg.payload[2];\nmsg.topic = msg.topic +  \"Temp_setting\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 200,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "a28d2e57.b16ec",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temp_read",
+        "func": "msg.payload = msg.payload[3];\nmsg.topic = msg.topic +  \"Temp_read\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 240,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "187bd920.98f3f7",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temp_read_point",
+        "func": "msg.payload = msg.payload[4];\nmsg.topic = msg.topic +  \"Temp_read_point\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 280,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "8fe8566a.ae1058",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_read",
+        "func": "msg.payload = msg.payload[5];\nmsg.topic = msg.topic +  \"Humidity_read\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 320,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "9478e208.41d45",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_read_point",
+        "func": "msg.payload = msg.payload[6];\nmsg.topic = msg.topic +  \"Humidity_read_point\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 360,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "8d7bdf2e.49517",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_conpensate",
+        "func": "var tmpValue = msg.payload[9];\ntmpValue = tmpValue - 5;\nmsg.payload = tmpValue;\nmsg.topic = msg.topic +  \"Temperature_conpensate\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 400,
+        "wires": [
+            [
+                "bdccfa36.e61518",
+                "cde4797c.8b3198"
+            ]
+        ]
+    },
+    {
+        "id": "2df5e86a.bfbdd8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Fanspeed_insert_card",
+        "func": "msg.payload = msg.payload[10];\nmsg.topic = msg.topic +  \"Fanspeed_insert_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 440,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "ab02755.71d0888",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_insert_card",
+        "func": "msg.payload = msg.payload[11];\nmsg.topic = msg.topic +  \"Temperature_insert_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 480,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "781426bf.2be018",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Fan_speed_remove_card",
+        "func": "msg.payload = msg.payload[12];\nmsg.topic = msg.topic +  \"Fan_speed_remove_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 520,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "ad542fc0.32da",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_remove_card",
+        "func": "msg.payload = msg.payload[13];\nmsg.topic = msg.topic +  \"Temperature_remove_card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 560,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "326429cf.163056",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_set_max",
+        "func": "msg.payload = msg.payload[14];\nmsg.topic = msg.topic +  \"Temperature_set_max\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 600,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "fd52e8c4.c7ef58",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_set_min",
+        "func": "msg.payload = msg.payload[15];\nmsg.topic = msg.topic +  \"Temperature_set_min\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 640,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "77a77b71.ac1434",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Timer_fan_turn_on",
+        "func": "msg.payload = msg.payload[16];\nmsg.topic = msg.topic +  \"Timer_fan_turn_on\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 680,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "7720f1fc.332d6",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Timer_fan_turn_off",
+        "func": "msg.payload = msg.payload[17];\nmsg.topic = msg.topic +  \"Timer_fan_turn_off\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 720,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "9e98db3c.a00af8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Card_delay_removed",
+        "func": "msg.payload = msg.payload[18];\nmsg.topic = msg.topic +  \"Card_delay_removed\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 760,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "a737fc9d.780d4",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Option_out",
+        "func": "msg.payload = msg.payload[19];\nmsg.topic = msg.topic +  \"Option_out\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 800,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "152ca059.f2096",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Show_display",
+        "func": "msg.payload = msg.payload[20];\nmsg.topic = msg.topic +  \"Show_display\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 840,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "186e1b55.d1cf15",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Motion_time_checking",
+        "func": "msg.payload = msg.payload[21];\nmsg.topic = msg.topic +  \"Motion_time_checking\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 880,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "f77591f4.76e32",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_limit",
+        "func": "msg.payload = msg.payload[22];\nmsg.topic = msg.topic +  \"Temperature_limit\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 920,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "f8139c2.260866",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Timer_for_entry_door",
+        "func": "msg.payload = msg.payload[23];\nmsg.topic = msg.topic +  \"Timer_for_entry_door\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 960,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "10898ee8.a2d881",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_min",
+        "func": "msg.payload = msg.payload[24];\nmsg.topic = msg.topic +  \"Humidity_min\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 1000,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "38441e24.9c0d22",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_max",
+        "func": "msg.payload = msg.payload[25];\nmsg.topic = msg.topic +  \"Humidity_max\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 1040,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "dc4ef5e9.2a9388",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Function_humidity_min",
+        "func": "msg.payload = msg.payload[26];\nmsg.topic = msg.topic +  \"Function_humidity_min\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 1080,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "a5e3e084.2d0f1",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Function_humidity_max",
+        "func": "msg.payload = msg.payload[27];\nmsg.topic = msg.topic +  \"Function_humidity_max\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 1120,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "37eb8f6.a3a407",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_compensate",
+        "func": "msg.payload = msg.payload[28] - 20;\nmsg.topic = msg.topic +  \"Humidity_compensate\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 1160,
+        "wires": [
+            [
+                "bdccfa36.e61518"
+            ]
+        ]
+    },
+    {
+        "id": "bdccfa36.e61518",
+        "type": "mqtt out",
+        "z": "f1d8b02f.e8755",
+        "name": "res",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 830,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5f498fc4.97db5",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": true,
+        "console": false,
+        "complete": "false",
+        "x": 550,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f227be21.534d4",
+        "type": "modbus-getter",
+        "z": "f1d8b02f.e8755",
+        "name": "err",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "20",
+        "server": "50fbd3e9.8c296c",
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "a118a219.4c724"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a118a219.4c724",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Location",
+        "func": "msg.topic = \"res/phuket/rm3/\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 1740,
+        "wires": [
+            [
+                "835bfda1.46345",
+                "1668d76a.846a49",
+                "86f71963.3c9868",
+                "bbfa9257.0e2dd",
+                "a95bf329.03717",
+                "f154a5c7.fa46d8",
+                "403bb031.295a1",
+                "8ce1287b.8fe928",
+                "848f58a.1bce1a8",
+                "c17f468b.ec3308",
+                "3088795.7b97e86",
+                "b87130f4.54b07",
+                "e8e570a7.504f3",
+                "6ee7847d.78f12c",
+                "3f1810c.e27c0f",
+                "55dd2672.404de8",
+                "866755a1.114c58",
+                "780f7a9.6e5a084",
+                "f66736ef.0b40e8",
+                "b5a94488.e850b8",
+                "21fe1208.58bb5e"
+            ]
+        ]
+    },
+    {
+        "id": "835bfda1.46345",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay1",
+        "func": "msg.payload = msg.payload[0];\nmsg.topic = msg.topic +  \"Relay1\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1340,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "21fe1208.58bb5e",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": true,
+        "console": false,
+        "complete": "false",
+        "x": 710,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "1668d76a.846a49",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay2",
+        "func": "msg.payload = msg.payload[1];\nmsg.topic = msg.topic +  \"Relay2\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1380,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "86f71963.3c9868",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay3",
+        "func": "msg.payload = msg.payload[2];\nmsg.topic = msg.topic +  \"Relay3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1420,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "bbfa9257.0e2dd",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay4",
+        "func": "msg.payload = msg.payload[3];\nmsg.topic = msg.topic +  \"Relay4\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1460,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "a95bf329.03717",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay5",
+        "func": "msg.payload = msg.payload[4];\nmsg.topic = msg.topic +  \"Relay5\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1500,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "f154a5c7.fa46d8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay6",
+        "func": "msg.payload = msg.payload[5];\nmsg.topic = msg.topic +  \"Relay6\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1540,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "403bb031.295a1",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay7",
+        "func": "msg.payload = msg.payload[6];\nmsg.topic = msg.topic +  \"Relay7\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1580,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "8ce1287b.8fe928",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Relay8",
+        "func": "msg.payload = msg.payload[7];\nmsg.topic = msg.topic +  \"Relay8\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1620,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "848f58a.1bce1a8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Key_Card",
+        "func": "msg.payload = msg.payload[8];\nmsg.topic = msg.topic +  \"Key_Card\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1660,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "c17f468b.ec3308",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Magnetic_door",
+        "func": "msg.payload = msg.payload[9];\nmsg.topic = msg.topic +  \"Magnetic_door\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 1700,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "3088795.7b97e86",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Motion1",
+        "func": "msg.payload = msg.payload[10];\nmsg.topic = msg.topic +  \"Motion1\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1740,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "b87130f4.54b07",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Motion2",
+        "func": "msg.payload = msg.payload[11];\nmsg.topic = msg.topic +  \"Motion2\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1780,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "e8e570a7.504f3",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Motion3",
+        "func": "msg.payload = msg.payload[12];\nmsg.topic = msg.topic +  \"Motion3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1820,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "6ee7847d.78f12c",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Motion4",
+        "func": "msg.payload = msg.payload[13];\nmsg.topic = msg.topic +  \"Motion4\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1860,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "3f1810c.e27c0f",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Motion5",
+        "func": "msg.payload = msg.payload[14];\nmsg.topic = msg.topic +  \"Motion5\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1900,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "55dd2672.404de8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "RCU_Status",
+        "func": "msg.payload = msg.payload[15];\nmsg.topic = msg.topic +  \"RCU_Status\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 1940,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "866755a1.114c58",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Welcome_mode",
+        "func": "msg.payload = msg.payload[16];\nmsg.topic = msg.topic +  \"Welcome_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 1980,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "780f7a9.6e5a084",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Active_mode",
+        "func": "msg.payload = msg.payload[17];\nmsg.topic = msg.topic +  \"Active_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 2020,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "f66736ef.0b40e8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Work_mode",
+        "func": "msg.payload = msg.payload[18];\nmsg.topic = msg.topic +  \"Work_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 2060,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "b5a94488.e850b8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "Off_mode",
+        "func": "msg.payload = msg.payload[19];\nmsg.topic = msg.topic +  \"Off_mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 2100,
+        "wires": [
+            [
+                "63543875.9dfea8"
+            ]
+        ]
+    },
+    {
+        "id": "ec7df95f.7ad7e8",
+        "type": "inject",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "69b15a59.9e4d74"
+            ]
+        ]
+    },
+    {
+        "id": "63543875.9dfea8",
+        "type": "mqtt out",
+        "z": "f1d8b02f.e8755",
+        "name": "res",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 870,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "55c0abb6.7c9974",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "topic": "req/phuket/rm3",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 140,
+        "y": 420,
+        "wires": [
+            [
+                "ed0be71.799d118",
+                "69b15a59.9e4d74"
+            ]
+        ]
+    },
+    {
+        "id": "ed0be71.799d118",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": true,
+        "console": false,
+        "complete": "false",
+        "x": 210,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "bb40e7c0.e67e28",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Main_Board_ID",
+        "topic": "phuket/rm3/Main_Board_ID",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 220,
+        "y": 2200,
+        "wires": [
+            [
+                "d706372.b34fdc8",
+                "e1ba4e8f.650f4"
+            ]
+        ]
+    },
+    {
+        "id": "d706372.b34fdc8",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2200,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cae646f9.e24c58",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Fanspeed",
+        "topic": "phuket/rm3/Fanspeed",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 200,
+        "y": 2240,
+        "wires": [
+            [
+                "147feba8.bedbb4"
+            ]
+        ]
+    },
+    {
+        "id": "147feba8.bedbb4",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "1",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2240,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ddda4e06.a93dd",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "2",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2280,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f0733873.bd7f28",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temp_setting",
+        "topic": "phuket/rm3/Temp_setting",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 210,
+        "y": 2280,
+        "wires": [
+            [
+                "ddda4e06.a93dd"
+            ]
+        ]
+    },
+    {
+        "id": "c7a9d5d4.39c0b8",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "3",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2320,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "fca5e71.1185b18",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temp_read",
+        "topic": "phuket/rm3/Temp_read",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 200,
+        "y": 2320,
+        "wires": [
+            [
+                "c7a9d5d4.39c0b8"
+            ]
+        ]
+    },
+    {
+        "id": "81925c94.61d3a",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "4",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c743ee92.7013",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temp_read_point",
+        "topic": "phuket/rm3/Temp_read_point",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 220,
+        "y": 2360,
+        "wires": [
+            [
+                "81925c94.61d3a"
+            ]
+        ]
+    },
+    {
+        "id": "2622a2c2.c0448e",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "5",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2400,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "92ad8ae8.06be88",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_read",
+        "topic": "phuket/rm3/Humidity_read",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 210,
+        "y": 2400,
+        "wires": [
+            [
+                "2622a2c2.c0448e"
+            ]
+        ]
+    },
+    {
+        "id": "5fd357d7.5877c8",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "6",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2440,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "829324a0.58aad8",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_read_point",
+        "topic": "phuket/rm3/Humidity_read_point",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 230,
+        "y": 2440,
+        "wires": [
+            [
+                "5fd357d7.5877c8"
+            ]
+        ]
+    },
+    {
+        "id": "3b131be.dea7ae4",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "9",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 670,
+        "y": 2420,
+        "wires": [
+            [
+                "d1d9a8cd.07a638"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "85c1ec0a.41b18",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_conpensate",
+        "topic": "phuket/rm3/Temperature_conpensate",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 250,
+        "y": 2480,
+        "wires": [
+            [
+                "5b012a1.f1540d4"
+            ]
+        ]
+    },
+    {
+        "id": "5428dda5.5c5d34",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Fanspeed_insert_card",
+        "topic": "phuket/rm3/Fanspeed_insert_card",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 2520,
+        "wires": [
+            [
+                "6e2f6b80.1e34f4"
+            ]
+        ]
+    },
+    {
+        "id": "6e2f6b80.1e34f4",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "10",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2520,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9d6ec74f.356a48",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "11",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2560,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "de577e5a.4f005",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_insert_card",
+        "topic": "phuket/rm3/Temperature_insert_card",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 250,
+        "y": 2560,
+        "wires": [
+            [
+                "9d6ec74f.356a48"
+            ]
+        ]
+    },
+    {
+        "id": "bd30dffc.555da",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Fan_speed_remove_card",
+        "topic": "phuket/rm3/Fan_speed_remove_card",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 250,
+        "y": 2600,
+        "wires": [
+            [
+                "813e29c5.3235c8"
+            ]
+        ]
+    },
+    {
+        "id": "813e29c5.3235c8",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "12",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2600,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "219d47d.2c5eeb8",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_remove_card",
+        "topic": "phuket/rm3/Temperature_remove_card",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 250,
+        "y": 2640,
+        "wires": [
+            [
+                "6774c9c9.3f76f8"
+            ]
+        ]
+    },
+    {
+        "id": "6774c9c9.3f76f8",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "13",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2640,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cc283952.be0458",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_set_max",
+        "topic": "phuket/rm3/Temperature_set_max",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 2720,
+        "wires": [
+            [
+                "8652805a.95f83"
+            ]
+        ]
+    },
+    {
+        "id": "8652805a.95f83",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "14",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2720,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4674ba18.d5d754",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "15",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2760,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ff62de7e.89a59",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_set_min",
+        "topic": "phuket/rm3/Temperature_set_min",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 2760,
+        "wires": [
+            [
+                "4674ba18.d5d754"
+            ]
+        ]
+    },
+    {
+        "id": "64d1f5bc.2ac8dc",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "16",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2800,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d9055085.9367b",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Timer_fan_turn_on",
+        "topic": "phuket/rm3/Timer_fan_turn_on",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 230,
+        "y": 2800,
+        "wires": [
+            [
+                "64d1f5bc.2ac8dc"
+            ]
+        ]
+    },
+    {
+        "id": "f54253c1.c9e4",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "17",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2840,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8571e795.165de8",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Timer_fan_turn_off",
+        "topic": "phuket/rm3/Timer_fan_turn_off",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 230,
+        "y": 2840,
+        "wires": [
+            [
+                "f54253c1.c9e4"
+            ]
+        ]
+    },
+    {
+        "id": "e9e95f33.cbbd5",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Card_delay_removed",
+        "topic": "phuket/rm3/Card_delay_removed",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 2880,
+        "wires": [
+            [
+                "8c7fa5c2.41d678"
+            ]
+        ]
+    },
+    {
+        "id": "8c7fa5c2.41d678",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "18",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2880,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "53e3826d.96b15c",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "19",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2920,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8eb604a2.c5e398",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Option_out",
+        "topic": "phuket/rm3/Option_out",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 200,
+        "y": 2920,
+        "wires": [
+            [
+                "53e3826d.96b15c"
+            ]
+        ]
+    },
+    {
+        "id": "19d5bf89.e6d9d",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Show_display",
+        "topic": "phuket/rm3/Show_display",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 210,
+        "y": 2960,
+        "wires": [
+            [
+                "37187b41.bfff34"
+            ]
+        ]
+    },
+    {
+        "id": "37187b41.bfff34",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "20",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 2960,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "19c4e86e.f8b2a8",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "21",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 3000,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "59ebb8ef.148d98",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Motion_time_checking",
+        "topic": "phuket/rm3/Motion_time_checking",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 3000,
+        "wires": [
+            [
+                "19c4e86e.f8b2a8"
+            ]
+        ]
+    },
+    {
+        "id": "bfbe098.9d243f8",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "22",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 3040,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "dd9ebd1f.3ffa1",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Temperature_limit",
+        "topic": "phuket/rm3/Temperature_limit",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 230,
+        "y": 3040,
+        "wires": [
+            [
+                "bfbe098.9d243f8"
+            ]
+        ]
+    },
+    {
+        "id": "d53f5e06.df91b",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "23",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 3080,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a794375e.c40c08",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Timer_for_entry_door",
+        "topic": "phuket/rm3/Timer_for_entry_door",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 3080,
+        "wires": [
+            [
+                "d53f5e06.df91b"
+            ]
+        ]
+    },
+    {
+        "id": "d3882742.736698",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "24",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 3120,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6a4ac03d.43897",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_min",
+        "topic": "phuket/rm3/Humidity_min",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 210,
+        "y": 3120,
+        "wires": [
+            [
+                "d3882742.736698"
+            ]
+        ]
+    },
+    {
+        "id": "6242dfb7.9e858",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "25",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 3160,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cac5ab85.d09a78",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_max",
+        "topic": "phuket/rm3/Humidity_max",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 210,
+        "y": 3160,
+        "wires": [
+            [
+                "6242dfb7.9e858"
+            ]
+        ]
+    },
+    {
+        "id": "561851fd.e8cb2",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "26",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 3200,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2bd7ff6e.e8bed",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Function_humidity_min",
+        "topic": "phuket/rm3/Function_humidity_min",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 3200,
+        "wires": [
+            [
+                "561851fd.e8cb2"
+            ]
+        ]
+    },
+    {
+        "id": "1f670ac6.31ce65",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "27",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 430,
+        "y": 3240,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "14b6a240.f7e4be",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Function_humidity_max",
+        "topic": "phuket/rm3/Function_humidity_max",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 3240,
+        "wires": [
+            [
+                "1f670ac6.31ce65"
+            ]
+        ]
+    },
+    {
+        "id": "884b407.a1ae1c",
+        "type": "modbus-write",
+        "z": "f1d8b02f.e8755",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "28",
+        "quantity": "1",
+        "server": "50fbd3e9.8c296c",
+        "x": 683.5,
+        "y": 3198,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ae9dcd65.b10ca",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "Humidity_compensate",
+        "topic": "phuket/rm3/Humidity_compensate",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 240,
+        "y": 3280,
+        "wires": [
+            [
+                "8b845a2c.ac0638"
+            ]
+        ]
+    },
+    {
+        "id": "e1ba4e8f.650f4",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": true,
+        "console": false,
+        "complete": "false",
+        "x": 440,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "3fc1d44a.6539fc",
+        "type": "http request",
+        "z": "f1d8b02f.e8755",
+        "name": "sheet",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSfKa1reEsfVGLMkzk0D-ZVQTMTnWF6OFUdOOomGHV7ezFb8Xg/formResponse?usp=pp_url&entry.1564633708={{payload.0}}&entry.1321417568={{payload.1}}&entry.1095000032={{payload.2}}&entry.440564361={{payload.3}}",
+        "tls": "",
+        "x": 770,
+        "y": 3300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48bc5caf.5f1334",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "get",
+        "func": "var temp = flow.get(\"temp\");\nvar humidity = flow.get(\"humidity\");\nvar note = \"room 317\";\nvar uts = flow.get(\"uts\");\nvar str = temp + \",\" + humidity + \",\" + note + \",\" + uts;\nmsg.payload = str\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 3440,
+        "wires": [
+            [
+                "75ed7005.ab992",
+                "63b9a9a1.0c3ef8"
+            ]
+        ]
+    },
+    {
+        "id": "75ed7005.ab992",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": true,
+        "console": false,
+        "complete": "payload",
+        "x": 750,
+        "y": 3400,
+        "wires": []
+    },
+    {
+        "id": "bf6cbf04.bbad7",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "set",
+        "func": "var temp = msg.payload[0];\nvar humidity = msg.payload[2];\nflow.set(\"temp\", temp);\nflow.set(\"humidity\", humidity);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 3500,
+        "wires": [
+            [
+                "48bc5caf.5f1334"
+            ]
+        ]
+    },
+    {
+        "id": "ed19684f.446ad8",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "uts",
+        "func": "var uts = msg.payload;\nflow.set(\"uts\", uts);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 3460,
+        "wires": [
+            [
+                "303e0ec5.67a302"
+            ]
+        ]
+    },
+    {
+        "id": "303e0ec5.67a302",
+        "type": "modbus-getter",
+        "z": "f1d8b02f.e8755",
+        "name": "temp",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "3",
+        "quantity": "3",
+        "server": "50fbd3e9.8c296c",
+        "x": 450,
+        "y": 3440,
+        "wires": [
+            [
+                "bf6cbf04.bbad7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e945be68.dc273",
+        "type": "delay",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 180,
+        "y": 3420,
+        "wires": [
+            [
+                "ed19684f.446ad8"
+            ]
+        ]
+    },
+    {
+        "id": "fa27f537.8c5568",
+        "type": "mqtt in",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "topic": "phuket/rm3/req/monit",
+        "qos": "0",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 120,
+        "y": 3520,
+        "wires": [
+            [
+                "504af794.5984a8",
+                "e945be68.dc273"
+            ]
+        ]
+    },
+    {
+        "id": "63b9a9a1.0c3ef8",
+        "type": "mqtt out",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "topic": "phuket/rm3/res/monit",
+        "qos": "0",
+        "retain": "false",
+        "broker": "b0e02b0a.eacbf8",
+        "x": 740,
+        "y": 3560,
+        "wires": []
+    },
+    {
+        "id": "504af794.5984a8",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 470,
+        "y": 3560,
+        "wires": []
+    },
+    {
+        "id": "d1d9a8cd.07a638",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 790,
+        "y": 2480,
+        "wires": []
+    },
+    {
+        "id": "cde4797c.8b3198",
+        "type": "debug",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 883.5,
+        "y": 353,
+        "wires": []
+    },
+    {
+        "id": "982fc308.8c096",
+        "type": "delay",
+        "z": "f1d8b02f.e8755",
+        "name": "",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "f227be21.534d4"
+            ]
+        ]
+    },
+    {
+        "id": "5b012a1.f1540d4",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "convertToPositiveNum",
+        "func": "var inputNum = parseInt(msg.payload);\ninputNum = inputNum + 5;\nmsg.payload = inputNum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 2480,
+        "wires": [
+            [
+                "3b131be.dea7ae4"
+            ]
+        ]
+    },
+    {
+        "id": "8b845a2c.ac0638",
+        "type": "function",
+        "z": "f1d8b02f.e8755",
+        "name": "convertToPositiveNum",
+        "func": "var inputNum = parseInt(msg.payload);\ninputNum = inputNum + 20;\nmsg.payload = inputNum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 500,
+        "y": 3280,
+        "wires": [
+            [
+                "884b407.a1ae1c"
+            ]
+        ]
+    },
+    {
+        "id": "50fbd3e9.8c296c",
+        "type": "modbus-client",
+        "z": "",
+        "name": "modbusGateway",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "tcpHost": "10.0.50.101",
+        "tcpPort": "502",
+        "tcpType": "TPC-RTU-BUFFERED",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectTimeout": "2000"
+    },
+    {
+        "id": "b0e02b0a.eacbf8",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "m10.cloudmqtt.com",
+        "port": "17606",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    }
+]
