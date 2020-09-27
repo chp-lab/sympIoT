@@ -205,7 +205,7 @@
 				return;
 			}
 			var data = response.getDataTable();
-			console.log(data);
+			console.log("Graph data=", data);
 			try
 			{
 				console.log("Number of point: " + data.hg.length);
@@ -325,10 +325,14 @@
 				console.log("Error on getOffResponse");
 				return;
 			}
+			console.log("#response");
 			// console.log(response);
 			var data = response.getDataTable();
-			console.log(data["hg"][0]["c"][0]["v"]);
-			tmpOffset = data["hg"][0]["c"][0]["v"];
+			//console.log("#data=");
+			//console.log(data);
+			//console.log(data["fg"][0]["c"][0]["v"]);
+			//console.log("***");
+			tmpOffset = data["fg"][0]["c"][0]["v"];
 			tmpOffset = tmpOffset - realtimeSpan;
 			console.log("getOffResponse: tmpOffset= " + tmpOffset);
 			vertualRealtime();

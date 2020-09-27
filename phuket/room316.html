@@ -324,8 +324,11 @@
 				// alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
 				return;
 			}
+			
+			console.log(response);
 			var data = response.getDataTable();
-			tmpOffset = data.wg[0].c[0].v;
+			//tmpOffset = data.wg[0].c[0].v;
+			tmpOffset = data["fg"][0]["c"][0]["v"];
 			tmpOffset = tmpOffset - realtimeSpan;
 			console.log("getOffResponse: tmpOffset= " + tmpOffset);
 			vertualRealtime();
@@ -698,8 +701,9 @@
 	<div id="setup">
 	<p id="chartType_lbl">Chart type:</p>
 	<select id="chartType">
-		<option value="scatter">Scatter</option>
+		
 		<option value="line">Line Chart</option>
+		<option value="scatter">Scatter</option>
 		<option value="scatterWithTrend">Trend</option>
 	</select><br>
 	
