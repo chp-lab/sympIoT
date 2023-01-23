@@ -325,10 +325,16 @@
 				return;
 			}
 			
-			console.log(response);
+			console.log("#getOffResponse=");
+			// console.log(response);
 			var data = response.getDataTable();
-			//tmpOffset = data.wg[0].c[0].v;
-			tmpOffset = data["fg"][0]["c"][0]["v"];
+			console.log("data=", data);
+			//console.log("#data=");
+			//console.log(data);
+			this_offset = data["Wf"][0]["c"][0]["v"];
+			console.log("offset=", this_offset);
+			//console.log("***");
+			tmpOffset = this_offset;
 			tmpOffset = tmpOffset - realtimeSpan;
 			console.log("getOffResponse: tmpOffset= " + tmpOffset);
 			vertualRealtime();

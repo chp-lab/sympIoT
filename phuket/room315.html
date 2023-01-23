@@ -325,14 +325,16 @@
 				console.log("Error on getOffResponse");
 				return;
 			}
-			console.log("#response");
+			console.log("#getOffResponse=");
 			// console.log(response);
 			var data = response.getDataTable();
+			console.log("data=", data);
 			//console.log("#data=");
 			//console.log(data);
-			//console.log(data["fg"][0]["c"][0]["v"]);
+			this_offset = data["Wf"][0]["c"][0]["v"];
+			console.log("offset=", this_offset);
 			//console.log("***");
-			tmpOffset = data["fg"][0]["c"][0]["v"];
+			tmpOffset = this_offset;
 			tmpOffset = tmpOffset - realtimeSpan;
 			console.log("getOffResponse: tmpOffset= " + tmpOffset);
 			vertualRealtime();
@@ -584,7 +586,7 @@
 				
 				if(shortTopic == "Magnetic_door")
 				{
-					console.log("db0x100");
+					// console.log("db0x100");
 					msg = "door opened";
 				}
 				else if(shortTopic == "Key_Card")
@@ -616,7 +618,7 @@
 			{
 				if(shortTopic == "Magnetic_door")
 				{
-					console.log("db0x101");
+					// console.log("db0x101");
 					msg = "door closed";
 				}
 				else if(shortTopic == "Key_Card")
@@ -677,7 +679,7 @@
 			
 			if(topic == "Temp_read")
 			{
-				console.log("db0x10");
+				// console.log("db0x10");
 				__tempRead = payload;
 				gaugeUpdate();
 			}
@@ -821,7 +823,7 @@
 		}
 		else if(__humidityRead > 70)
 		{
-			console.log("db0x12");
+			// console.log("db0x12");
 			document.getElementById("gaugeDataColor2").style.backgroundColor = "#ED3D3D";
 		}
 		else

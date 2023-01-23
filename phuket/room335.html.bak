@@ -34,7 +34,7 @@
 		
 		<script type="text/javascript">
 		var sid = '1cjy2FDGMQr_fyu9rmVeO1EhPDRSXANozl9S5MWDd6mg';
-		var gid = '527941957';
+		var gid = '380585507';
 		var tmpOffset = 0;
 		var realtimeSpan = 15;
 		google.charts.load("current", {packages:["corechart"]});
@@ -44,7 +44,7 @@
 		google.charts.setOnLoadCallback(getOffset);
 		
 		
-		var cname = "Room 328 @phuket";
+		var cname = "Room 335 @phuket";
 		function setDate(){
 			var d = new Date();
 			var _today = d.getFullYear() + "-" + (d.getMonth() + 1).toString() + "-" + d.getDate() + " 00:00:00";
@@ -324,16 +324,8 @@
 				// alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
 				return;
 			}
-			console.log("#getOffResponse=");
-			// console.log(response);
 			var data = response.getDataTable();
-			console.log("data=", data);
-			//console.log("#data=");
-			//console.log(data);
-			this_offset = data["Wf"][0]["c"][0]["v"];
-			console.log("offset=", this_offset);
-			//console.log("***");
-			tmpOffset = this_offset;
+			tmpOffset = data["fg"][0]["c"][0]["v"];
 			tmpOffset = tmpOffset - realtimeSpan;
 			console.log("getOffResponse: tmpOffset= " + tmpOffset);
 			vertualRealtime();
@@ -421,9 +413,9 @@
 		// ##mqtt
 	// Update 07142019 add auth.
 	// Start
-	var deviceLocation = "phuket/rm12/";
-	var helloReq = "req/phuket/rm12";
-	var helloRes = "res/phuket/rm12/";
+	var deviceLocation = "phuket/rm17/";
+	var helloReq = "req/phuket/rm17";
+	var helloRes = "res/phuket/rm17/";
 	var __mqtt_username, __mqtt_password, __mqtt_url, __mqtt_port;
 		
 	let cid = Math.random().toString(36).substring(7);

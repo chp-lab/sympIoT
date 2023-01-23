@@ -11,6 +11,7 @@
 		<script src="/js/material-gauge.js"></script>
 		<script src="/jwt-vanilla.js"></script>
 		
+		
 		<script type="text/javascript">
 		// Firebase script
 		var firebaseKey = "z0BTa3BYrfe7xi8QGzn5yiPaHll1";
@@ -34,7 +35,7 @@
 		
 		<script type="text/javascript">
 		var sid = '1cjy2FDGMQr_fyu9rmVeO1EhPDRSXANozl9S5MWDd6mg';
-		var gid = '527941957';
+		var gid = '968477672';
 		var tmpOffset = 0;
 		var realtimeSpan = 15;
 		google.charts.load("current", {packages:["corechart"]});
@@ -44,7 +45,7 @@
 		google.charts.setOnLoadCallback(getOffset);
 		
 		
-		var cname = "Room 328 @phuket";
+		var cname = "Room 318 @phuket";
 		function setDate(){
 			var d = new Date();
 			var _today = d.getFullYear() + "-" + (d.getMonth() + 1).toString() + "-" + d.getDate() + " 00:00:00";
@@ -324,16 +325,8 @@
 				// alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
 				return;
 			}
-			console.log("#getOffResponse=");
-			// console.log(response);
 			var data = response.getDataTable();
-			console.log("data=", data);
-			//console.log("#data=");
-			//console.log(data);
-			this_offset = data["Wf"][0]["c"][0]["v"];
-			console.log("offset=", this_offset);
-			//console.log("***");
-			tmpOffset = this_offset;
+			tmpOffset = data["fg"][0]["c"][0]["v"];
 			tmpOffset = tmpOffset - realtimeSpan;
 			console.log("getOffResponse: tmpOffset= " + tmpOffset);
 			vertualRealtime();
@@ -421,9 +414,9 @@
 		// ##mqtt
 	// Update 07142019 add auth.
 	// Start
-	var deviceLocation = "phuket/rm12/";
-	var helloReq = "req/phuket/rm12";
-	var helloRes = "res/phuket/rm12/";
+	var deviceLocation = "phuket/rm4/";
+	var helloReq = "req/phuket/rm4";
+	var helloRes = "res/phuket/rm4/";
 	var __mqtt_username, __mqtt_password, __mqtt_url, __mqtt_port;
 		
 	let cid = Math.random().toString(36).substring(7);
@@ -706,9 +699,9 @@
 	<div id="setup">
 	<p id="chartType_lbl">Chart type:</p>
 	<select id="chartType">
-		
 		<option value="line">Line Chart</option>
 		<option value="scatter">Scatter</option>
+		
 		<option value="scatterWithTrend">Trend</option>
 	</select><br>
 	
@@ -916,7 +909,7 @@
 	</div>
 	
 	<div id="cr_div">
-	<p id="getData"><b><a href="https://docs.google.com/spreadsheets/d/1cQuHrtvMbYukbTHewMElMzbX7kmJWryPb6Kx6hpcQYA/edit?usp=sharing">Download</a></b></p>
+	<p id="getData"><b><a href="https://drive.google.com/open?id=1cjy2FDGMQr_fyu9rmVeO1EhPDRSXANozl9S5MWDd6mg">Download</a></b></p>
 	<p id="storage"><b><a href="https://drive.google.com/drive/folders/1K062Ec_Y1j5YlNYP1ZFdsiIq5kzNI2pw?usp=sharing">Storage</a></b></p>
 	<p id="credit">Developer: Chatpeth Kenanan</p></div>
 	<script type="text/javascript">
@@ -1220,7 +1213,8 @@
 	</tr>
 </table>
 </div>
-<button id="logoutBtn" onclick="logout()">logout</button>
+
 	</body>
+	<button id="logoutBtn" onclick="logout()">logout</button>
 </html>
   

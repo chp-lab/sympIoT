@@ -11,6 +11,7 @@
 		<script src="/js/material-gauge.js"></script>
 		<script src="/jwt-vanilla.js"></script>
 		
+		
 		<script type="text/javascript">
 		// Firebase script
 		var firebaseKey = "z0BTa3BYrfe7xi8QGzn5yiPaHll1";
@@ -34,7 +35,6 @@
 		
 		<script type="text/javascript">
 		var sid = '1cjy2FDGMQr_fyu9rmVeO1EhPDRSXANozl9S5MWDd6mg';
-		var gid = '527941957';
 		var tmpOffset = 0;
 		var realtimeSpan = 15;
 		google.charts.load("current", {packages:["corechart"]});
@@ -44,7 +44,7 @@
 		google.charts.setOnLoadCallback(getOffset);
 		
 		
-		var cname = "Room 328 @phuket";
+		var cname = "Room315 @phuket";
 		function setDate(){
 			var d = new Date();
 			var _today = d.getFullYear() + "-" + (d.getMonth() + 1).toString() + "-" + d.getDate() + " 00:00:00";
@@ -123,12 +123,12 @@
 			
 			console.log("tmpTq" + tmpTq);
 			var queryString = encodeURIComponent(tmpTq);
-			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=' + gid + '&headers=1&tq=' + queryString);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=1689878132&headers=1&tq=' + queryString);
 			query.send(handleQueryResponse);
 			
 			// Data Analysis
 			var _analyQueryString = encodeURIComponent(_analyTq);
-			var _analyQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=' + gid + '&headers=1&tq=' + _analyQueryString);
+			var _analyQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=1689878132&headers=1&tq=' + _analyQueryString);
 			_analyQuery.send(dataAnalysisResponse);
 			
 			vertualRealtime();
@@ -159,7 +159,7 @@
 			tmpOffset = tmpOffset + 1;
 			console.log("vertualRealtime: tmpOffset= " + tmpOffset);
 			var queryString = encodeURIComponent(tq);
-			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=' + gid + '&headers=1&tq=' + queryString);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=1689878132&headers=1&tq=' + queryString);
 			try
 			{
 				query.send(realtimeResponse);
@@ -205,11 +205,11 @@
 				return;
 			}
 			var data = response.getDataTable();
-			
+			console.log("Graph data=", data);
 			try
 			{
-				console.log("Number of point: " + data.wg.length);
-				document.getElementById("numberOfElement").innerHTML = "Number of point: " + data.wg.length.toString();
+				console.log("Number of point: " + data.hg.length);
+				document.getElementById("numberOfElement").innerHTML = "Number of point: " + data.hg.length.toString();
 			}catch(err){
 				document.getElementById("numberOfElement").innerHTML = err.message;
 			}
@@ -315,19 +315,20 @@
 		function getOffset(qMsg){
 			qMsg = "SELECT COUNT(A)";
 			var queryString = encodeURIComponent(qMsg);
-			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=' + gid + '&headers=1&tq=' + queryString);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=1689878132&headers=1&tq=' + queryString);
 			query.send(getOffResponse);
 		}
 		
 		function getOffResponse(response){
 			if (response.isError()) {
 				// alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				console.log("Error on getOffResponse");
 				return;
 			}
 			console.log("#getOffResponse=");
 			// console.log(response);
 			var data = response.getDataTable();
-			console.log("data=", data);
+			console.log("data=", data.data);
 			//console.log("#data=");
 			//console.log(data);
 			this_offset = data["Wf"][0]["c"][0]["v"];
@@ -342,7 +343,7 @@
 		function testQuery(testMsg){
 			console.log("Start query: " + testMsg);
 			var queryString = encodeURIComponent(testMsg);
-			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=' + gid + '&headers=1&tq=' + queryString);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=1689878132&headers=1&tq=' + queryString);
 			query.send(testQueryResponse);
 		}
 		function testQueryResponse(response){
@@ -406,12 +407,12 @@
 						
 			console.log("db0x06: dateTq1= " + dateTq1);
 			var queryString = encodeURIComponent(dateTq1);
-			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=' + gid + '&headers=1&tq=' + queryString);
+			var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=1689878132&headers=1&tq=' + queryString);
 			query.send(handleQueryResponse);
 			
 			// Data Analysis
 			var _analyQueryString = encodeURIComponent(_analyTq);
-			var _analyQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=' + gid + '&headers=1&tq=' + _analyQueryString);
+			var _analyQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sid + '/gviz/tq?gid=1689878132&headers=1&tq=' + _analyQueryString);
 			_analyQuery.send(dataAnalysisResponse);
 			
 			vertualRealtime();
@@ -421,9 +422,9 @@
 		// ##mqtt
 	// Update 07142019 add auth.
 	// Start
-	var deviceLocation = "phuket/rm12/";
-	var helloReq = "req/phuket/rm12";
-	var helloRes = "res/phuket/rm12/";
+	var deviceLocation = "phuket/rm1/";
+	var helloReq = "req/phuket/rm1";
+	var helloRes = "res/phuket/rm1/";
 	var __mqtt_username, __mqtt_password, __mqtt_url, __mqtt_port;
 		
 	let cid = Math.random().toString(36).substring(7);
@@ -585,7 +586,7 @@
 				
 				if(shortTopic == "Magnetic_door")
 				{
-					console.log("db0x100");
+					// console.log("db0x100");
 					msg = "door opened";
 				}
 				else if(shortTopic == "Key_Card")
@@ -617,7 +618,7 @@
 			{
 				if(shortTopic == "Magnetic_door")
 				{
-					console.log("db0x101");
+					// console.log("db0x101");
 					msg = "door closed";
 				}
 				else if(shortTopic == "Key_Card")
@@ -678,7 +679,7 @@
 			
 			if(topic == "Temp_read")
 			{
-				console.log("db0x10");
+				// console.log("db0x10");
 				__tempRead = payload;
 				gaugeUpdate();
 			}
@@ -706,7 +707,6 @@
 	<div id="setup">
 	<p id="chartType_lbl">Chart type:</p>
 	<select id="chartType">
-		
 		<option value="line">Line Chart</option>
 		<option value="scatter">Scatter</option>
 		<option value="scatterWithTrend">Trend</option>
@@ -823,7 +823,7 @@
 		}
 		else if(__humidityRead > 70)
 		{
-			console.log("db0x12");
+			// console.log("db0x12");
 			document.getElementById("gaugeDataColor2").style.backgroundColor = "#ED3D3D";
 		}
 		else
@@ -916,7 +916,7 @@
 	</div>
 	
 	<div id="cr_div">
-	<p id="getData"><b><a href="https://docs.google.com/spreadsheets/d/1cQuHrtvMbYukbTHewMElMzbX7kmJWryPb6Kx6hpcQYA/edit?usp=sharing">Download</a></b></p>
+	<p id="getData"><b><a href="https://drive.google.com/open?id=1cjy2FDGMQr_fyu9rmVeO1EhPDRSXANozl9S5MWDd6mg">Download</a></b></p>
 	<p id="storage"><b><a href="https://drive.google.com/drive/folders/1K062Ec_Y1j5YlNYP1ZFdsiIq5kzNI2pw?usp=sharing">Storage</a></b></p>
 	<p id="credit">Developer: Chatpeth Kenanan</p></div>
 	<script type="text/javascript">
