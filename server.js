@@ -120,10 +120,10 @@ app.get("/index", requireJWTAuth, (req, res) => {
 					message: 'authorized',
 					username: UNAME,
 					mqtt: {
-						username:"wzvravkf",
-						password:"v1OZdLXaX06l",
-						url:"m10.cloudmqtt.com",
-						port:37606
+						username:"chp-lab",
+						password:"atop3352",
+						url:"wattvision-proxy.giantiot.com",
+						port:1882
 					},
 					
 	});
