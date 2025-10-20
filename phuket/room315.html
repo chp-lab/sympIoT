@@ -462,6 +462,7 @@
 			__mqtt_url = jsonResponse.mqtt.url;
 			__mqtt_port = jsonResponse.mqtt.port;
 			console.log("db0x34");
+			console.log("MQTT Info: " + __mqtt_username + ", " + __mqtt_password + ", " + __mqtt_url + ", " + __mqtt_port);
 			client = new Paho.MQTT.Client(__mqtt_url, __mqtt_port, cid);
 			//Example client = new Paho.MQTT.Client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
 
@@ -470,7 +471,7 @@
 			client.onMessageArrived = onMessageArrived;
 			
 			var options = {
-				useSSL: false,
+				useSSL: true,
 				userName: __mqtt_username,
 				password: __mqtt_password,
 				onSuccess:onConnect,
@@ -489,7 +490,7 @@
 		// called when the client connects
 		function onConnect() {
 			// Once a connection has been made, make a subscription and send a message.
-			console.log("onConnect");
+			console.log("onConnect to MQTT broker success");
 			client.subscribe(helloRes + "Main_Board_ID");
 			client.subscribe(helloRes + "Fanspeed");
 			client.subscribe(helloRes + "Temp_setting");

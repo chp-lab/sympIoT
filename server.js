@@ -122,8 +122,8 @@ app.get("/index", requireJWTAuth, (req, res) => {
 					mqtt: {
 						username:"chp-lab",
 						password:"atop3352",
-						url:"wattvision-proxy.giantiot.com",
-						port:5001
+						url:"ipro-mqtt.giantiot.com",
+						port:443
 					},
 					
 	});

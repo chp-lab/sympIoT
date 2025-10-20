@@ -461,6 +461,7 @@
 			__mqtt_url = jsonResponse.mqtt.url;
 			__mqtt_port = jsonResponse.mqtt.port;
 			console.log("db0x34");
+			console.log("MQTT Info: " + __mqtt_username + ", " + __mqtt_password + ", " + __mqtt_url + ", " + __mqtt_port);
 			client = new Paho.MQTT.Client(__mqtt_url, __mqtt_port, cid);
 			//Example client = new Paho.MQTT.Client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
 
@@ -469,7 +470,7 @@
 			client.onMessageArrived = onMessageArrived;
 			
 			var options = {
-				useSSL: false,
+				useSSL: true,
 				userName: __mqtt_username,
 				password: __mqtt_password,
 				onSuccess:onConnect,
