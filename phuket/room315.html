@@ -23,13 +23,13 @@
 			storageBucket: "wpm2019-403f9.appspot.com",
 			messagingSenderId: "480780089854"
 		};
-		firebase.initializeApp(config);
+		// firebase.initializeApp(config);
 		// Get a reference to the database service
-		var database = firebase.database();
+		// var database = firebase.database();
 		
-		database.ref(firebaseKey + '/billing/meter1/location').once('value').then(function(snapshot){
-			console.log(snapshot.val());
-		});
+		// database.ref(firebaseKey + '/billing/meter1/location').once('value').then(function(snapshot){
+		// 	console.log(snapshot.val());
+		// });
 		
 		</script>
 		
@@ -37,11 +37,11 @@
 		var sid = '1cjy2FDGMQr_fyu9rmVeO1EhPDRSXANozl9S5MWDd6mg';
 		var tmpOffset = 0;
 		var realtimeSpan = 15;
-		google.charts.load("current", {packages:["corechart"]});
-		google.charts.setOnLoadCallback(setDate);
+		// google.charts.load("current", {packages:["corechart"]});
+		// google.charts.setOnLoadCallback(setDate);
 		//google.charts.setOnLoadCallback(drawGID);
-		google.charts.setOnLoadCallback(drawAtDate);
-		google.charts.setOnLoadCallback(getOffset);
+		// google.charts.setOnLoadCallback(drawAtDate);
+		// google.charts.setOnLoadCallback(getOffset);
 		
 		
 		var cname = "Room315 @phuket";
@@ -717,8 +717,6 @@
 	<select id="parameter1" onchange="vertualRealtime()">
 		<option value="B-Temp" >temp</option>
 		<option value="C-Humidity" >humidity</option>
-		
-		
 	</select>
 	
 	<p id="parameter2_lbl" >Parameter2:</p>
