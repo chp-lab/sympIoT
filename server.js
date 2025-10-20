@@ -123,7 +123,7 @@ app.get("/index", requireJWTAuth, (req, res) => {
 						username:"chp-lab",
 						password:"atop3352",
 						url:"wattvision-proxy.giantiot.com",
-						port:1882
+						port:5001
 					},
 					
 	});
