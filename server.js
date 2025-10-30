@@ -11,8 +11,6 @@ const jwtOptions = {
    jwtFromRequest: ExtractJwt.fromHeader("authorization"),
    secretOrKey: SECRET,
 }
-require('dotenv').config();
-
 
 const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
 	console.log("sub: " + payload.sub);
@@ -48,6 +46,7 @@ const requireJWTAuth = passport.authenticate("jwt",{session:false});
 
 var UNAME = "login";
 const PORT = process.env.PORT || 80;
+console.log("Server starting at port " + PORT);
 
 const loginMiddleware = (req, res, next) => {
 	
