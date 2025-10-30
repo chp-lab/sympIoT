@@ -11,6 +11,7 @@ const jwtOptions = {
    jwtFromRequest: ExtractJwt.fromHeader("authorization"),
    secretOrKey: SECRET,
 }
+const path = require('path');
 
 const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
 	console.log("sub: " + payload.sub);
@@ -39,7 +40,8 @@ app.use(bodyParser.json()); // Enable json body-parser
 // Add jwtAuth to passport
 passport.use(jwtAuth);
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public'))); 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const requireJWTAuth = passport.authenticate("jwt",{session:false});
