@@ -11,6 +11,7 @@ const jwtOptions = {
    jwtFromRequest: ExtractJwt.fromHeader("authorization"),
    secretOrKey: SECRET,
 }
+require('dotenv').config();
 
 
 const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
